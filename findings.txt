@@ -1,0 +1,116 @@
+without asyncio:
+its fine tho but not in a usecase with 20.000 devices
+
+
+with asyncio:
+using send_commands(["show run", 'show ip int brief', "show ip route"])
+and using the existing channels to the device. so it logs in 4 times.
+root@58ba369971bb:/app# python app/try_asyncio.py
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.193
+gathered info for 10.17.28.194
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.1.1.155
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+----->   7.1338589469996805
+
+
+with asyncio parrallel:
+using send_commands(["show run", 'show ip int brief', "show ip route"])
+and using the existing channels to the device. so it logs in 4 times.
+root@58ba369971bb:/app# python app/try_asyncio_parralel.py
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.193
+gathered info for 10.17.28.194
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.194
+gathered info for 10.17.28.193
+gathered info for 10.1.1.154
+gathered info for 10.1.1.156
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.154
+gathered info for 10.1.1.156
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.156
+gathered info for 10.1.1.154
+gathered info for 10.1.1.156
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.193
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.17.28.194
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.155
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.1.1.156
+gathered info for 10.1.1.156
+gathered info for 10.1.1.154
+gathered info for 10.1.1.154
+gathered info for 10.1.1.155
+gathered info for 10.1.1.156
+gathered info for 10.1.1.155
+------>   19.57842874800008
+it created 3 processes and then goes to the device 4 times.
+so actually it takes the second divided by 19.57842874800008 / = 4.8925
+but this created processes (we should use something like celery for that.
+
+
+
+now using 3 send_command and await them.
+        response = await conn.send_command("show ip route")
+        response = await conn.send_command("show run")
+        response = await conn.send_command("show ip int brief")
+asyncio = 7.67333272399992
+asyncio_paralell = 18.763207751000664 / 4 = 4.68254
+
+so same findings.
+in the end i think we go for asyncio and not manually implement the parallel variant.
+something like celery that already does the process forking to cpu's should be fine
+
+
+
+

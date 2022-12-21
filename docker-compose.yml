@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      target: install
+      args:
+        INSTALL_ARGS: "--no-root"
+    command: bash
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app:cached
+
+volumes:
+  db: {}
+  cache: {}

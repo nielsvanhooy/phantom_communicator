@@ -1,0 +1,122 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool]
+
+[tool.black]
+include = '\.pyi?$'
+line-length = 120
+target-version = ["py310"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "pass",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "nocov",
+    "if TYPE_CHECKING:",
+]
+fail_under = 80
+show_missing = true
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.isort]
+combine_as_imports = "false"
+force_grid_wrap = 0
+include_trailing_comma = "true"
+known_first_party = "bifrost"
+line_length = 120
+multi_line_output = 3
+profile = "black"
+
+[tool.mypy]
+disallow_untyped_defs = true
+exclude = "bifrost/orm/migrations"
+follow_imports = "silent"
+ignore_missing_imports = true
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.poetry]
+authors = ["niels van hooij <niels.vanhooij@kpn.com>"]
+description = ""
+name = "cpe-communicator"
+#packages = [{include = "cpe-phantom_communicator"}]
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+genie = "*"
+pyats = "*"
+pydantic = "*"
+python = "^3.10"
+scrapli = "*"
+scrapli-community = "*"
+scrapli-replay = "*"
+asyncssh = "^2.12.0"
+scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
+scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
+uvloop = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+bandit = "^1.7.4"
+black = "^22.8"
+django = "*"
+flake8 = "*"
+ipython = "^8.5.0"
+isort = "^5.10"
+mypy = "^0.971"
+pre-commit = "*"
+pylint = "^2.15.3"
+pylint-pydantic = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+pytest-dotenv = "*"
+responses = "^0.21.0"
+safety = "*"
+
+[tool.pylint.BASIC]
+good-names = "_,__,i,e,k,v,fn,get,post,put,patch,delete,route,asgi,websocket,Dependency,Body,Parameter"
+no-docstring-rgx = "(__.*__|main|test.*|.*test|.*Test|^_.*)$"
+
+[tool.pylint.FORMAT]
+max-line-length = "120"
+
+[tool.pylint.LOGGING]
+logging-modules = ["logging","picologging"]
+
+[tool.pylint.MASTER]
+load-plugins = "pylint_pydantic"
+
+[tool.pylint.MESSAGE_CONTROL]
+disable = [
+    "line-too-long",
+    "invalid-name",
+    "missing-class-docstring",
+    "missing-module-docstring",
+    "too-few-public-methods",
+    "duplicate-code",
+    "missing-docstring",
+]
+enable = "useless-suppression"
+extension-pkg-allow-list = ["pydantic","asyncpg.pgproto.pgproto"]
+
+[tool.pylint.REPORTS]
+reports = "no"
+
+[tool.pylint.VARIABLES]
+ignored-argument-names = "args|kwargs|_|__"
+
+[tool.pytest.ini_options]
+addopts = "--no-cov -p no:cacheprovider -vv  --doctest-modules --doctest-glob=*.md"
+cache_dir = ".pytest_cache"
+env_files = [".env"]

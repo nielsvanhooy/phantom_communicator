@@ -1,0 +1,13 @@
+Host 10.1.1.* !jumphost
+    Proxycommand ssh jumphost -W %h:%p
+
+Host jumphost
+    IdentityFile /root/.ssh/id_rsa_jumpuser_rufus
+    IdentitiesOnly yes
+    User jumpuser
+    HostName 10.17.28.210
+
+Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
