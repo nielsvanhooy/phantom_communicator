@@ -38,7 +38,6 @@ profile = "black"
 
 [tool.mypy]
 disallow_untyped_defs = true
-exclude = "bifrost/orm/migrations"
 follow_imports = "silent"
 ignore_missing_imports = true
 python_version = "3.10"
@@ -48,7 +47,7 @@ warn_unused_configs = true
 [tool.poetry]
 authors = ["niels van hooij <niels.vanhooij@kpn.com>"]
 description = ""
-name = "cpe-communicator"
+name = "phantom-communicator"
 #packages = [{include = "cpe-phantom_communicator"}]
 readme = "README.md"
 version = "0.1.0"
