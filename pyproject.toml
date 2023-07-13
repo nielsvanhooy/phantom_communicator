@@ -1,0 +1,125 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool]
+
+[tool.black]
+include = '\.pyi?$'
+line-length = 120
+target-version = ["py310"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "pass",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "nocov",
+    "if TYPE_CHECKING:",
+]
+fail_under = 80
+show_missing = true
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.isort]
+combine_as_imports = "false"
+force_grid_wrap = 0
+include_trailing_comma = "true"
+known_first_party = "bifrost"
+line_length = 120
+multi_line_output = 3
+profile = "black"
+
+[tool.mypy]
+disallow_untyped_defs = true
+exclude = "bifrost/orm/migrations"
+follow_imports = "silent"
+ignore_missing_imports = true
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.poetry]
+authors = ["niels van hooij <niels.vanhooij@kpn.com>"]
+description = ""
+name = "phantom-communicator"
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+asyncssh = "^2.13.2"
+python = ">=3.11,<3.12"
+scrapli = "^2023.1.30"
+scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
+scrapli-community = "^2023.1.30"
+scrapli-replay = "^2023.1.30.post1"
+scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
+
+
+genie = { version = "^23.6", optional=true}
+pyats = { version = "^23.6", optional=true}
+
+
+[tool.poetry.dev-dependencies]
+bandit = "^1.7.5"
+black = "^23.7.0"
+flake8 = "^6.0.0"
+ipython = "^8.14.0"
+isort = "^5.12.0"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+pylint = "^2.17.4"
+pylint-pydantic = "^0.2.1"
+pytest = "^7.4.0"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+pytest-dotenv = "^0.5.2"
+responses = "^0.23.1"
+safety = "^2.3.5"
+uvloop = "^0.17.0"
+
+[tool.poetry.extras]
+genie = ["pyats", "pyats"]
+
+[tool.pylint.BASIC]
+good-names = "_,__,i,e,k,v,fn,get,post,put,patch,delete,route,asgi,websocket,Dependency,Body,Parameter"
+no-docstring-rgx = "(__.*__|main|test.*|.*test|.*Test|^_.*)$"
+
+[tool.pylint.FORMAT]
+max-line-length = "120"
+
+[tool.pylint.LOGGING]
+logging-modules = ["logging","picologging"]
+
+[tool.pylint.MASTER]
+load-plugins = "pylint_pydantic"
+
+[tool.pylint.MESSAGE_CONTROL]
+disable = [
+    "line-too-long",
+    "invalid-name",
+    "missing-class-docstring",
+    "missing-module-docstring",
+    "too-few-public-methods",
+    "duplicate-code",
+    "missing-docstring",
+]
+enable = "useless-suppression"
+extension-pkg-allow-list = ["pydantic","asyncpg.pgproto.pgproto"]
+
+[tool.pylint.REPORTS]
+reports = "no"
+
+[tool.pylint.VARIABLES]
+ignored-argument-names = "args|kwargs|_|__"
+
+[tool.pytest.ini_options]
+addopts = "--no-cov -p no:cacheprovider -vv  --doctest-modules --doctest-glob=*.md"
+cache_dir = ".pytest_cache"
+env_files = [".env"]
