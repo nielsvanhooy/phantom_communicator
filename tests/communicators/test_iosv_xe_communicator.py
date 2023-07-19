@@ -78,23 +78,16 @@ GigabitEthernet0       unassigned      YES unset  administratively down down""",
         assert cmd["command_output"] in expected_result
 
 
-### test _cfg_conn calling against he fake mock
+# @pytest.mark.scrapli_replay
+async def test_iosv_xe_communicator_parse_genie(iosxe_communicator):
 
+    cmd = "show version"
 
-@pytest.mark.scrapli_replay
-async def test_iosv_xe_communicator_fake_cfgconn(iosxe_communicator):
-    """this just tests the functionality of being called
-    not the direct implemenation. that is tested in its own library
-    """
     async with iosxe_communicator as conn:
-        version = await conn.get_version()
-        startup_config = await conn.get_startup_config()
-        running_config = await conn.get_running_config()
+        response = await conn.send_command(cmd)
+        genie_output = await conn.genie_parse_output()
 
-    assert version == "i am a fake version"
-    assert startup_config == "fake config"
-    assert running_config == "fake config"
-
+    lala = "loeloe"
 
 async def test_iosv_xe_communicator_cant_connect():
     with pytest.raises(ConnectionLost):
@@ -114,3 +107,20 @@ async def test_iosv_xe_communicator_auth_failed():
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
             conn.get_version()
+
+### test _cfg_conn calling against he fake mock
+
+
+@pytest.mark.scrapli_replay
+async def test_iosv_xe_communicator_fake_cfgconn(iosxe_communicator):
+    """this just tests the functionality of being called
+    not the direct implemenation. that is tested in its own library
+    """
+    async with iosxe_communicator as conn:
+        version = await conn.get_version()
+        startup_config = await conn.get_startup_config()
+        running_config = await conn.get_running_config()
+
+    assert version == "i am a fake version"
+    assert startup_config == "fake config"
+    assert running_config == "fake config"
