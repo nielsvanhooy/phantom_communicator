@@ -3,7 +3,7 @@ import concurrent.futures
 import timeit
 from multiprocessing import cpu_count
 
-from phantom_communicator.communicator_asyncio import Communicator
+from phantom_communicator.communicators.communicator_asyncio import Communicator
 
 NUM_CORES = cpu_count()
 

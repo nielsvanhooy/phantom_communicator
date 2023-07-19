@@ -5,16 +5,16 @@ toml_sort:
 	toml-sort pyproject.toml --all --in-place
 
 isort:
-	poetry run isort .
+	poetry run isort phantom_communicator
 
 black:
-	poetry run black .
+	poetry run black phantom_communicator
 
 flake8:
-	poetry run flake8 .
+	poetry run flake8 phantom_communicator
 
 pylint:
-	poetry run pylint --recursive=true .
+	poetry run pylint --recursive=true phantom_communicator
 
 dockerfile_linter:
 	docker run --rm -i hadolint/hadolint < Dockerfile

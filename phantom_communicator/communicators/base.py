@@ -1,34 +1,18 @@
 import asyncio
-import re
 from collections import namedtuple
 from typing import List, Literal, Optional, Tuple, Union
 
 from asyncssh import ConnectionLost
-from scrapli.driver.core import AsyncIOSXEDriver
 from scrapli.exceptions import ScrapliAuthenticationFailed
-from scrapli_cfg import AsyncScrapliCfg
-from scrapli_community.huawei.vrp.async_driver import (
-    AsyncHuaweiVRPDriver,
-    default_async_on_close,
-    default_async_on_open,
-)
-from scrapli_community.huawei.vrp.huawei_vrp import DEFAULT_PRIVILEGE_LEVELS as VRP_DEFAULT_PRIVILEGE_LEVELS
 from scrapli_transfer_utils import AsyncSrapliTransferUtils
 
-from phantom_communicator.constants import (
-    CONFIGSTORE,
-    GET_BOOT_STATEMENTS_HVRP,
-    GET_BOOT_STATEMENTS_IOSXE,
-    TACACS_WRITE_USER_NAME,
-    TACACS_WRITE_USER_PASS,
-)
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed, CommunicatorNotFound
 from phantom_communicator.helpers import genie_parse
 
 BootFiles = namedtuple("BootFiles", ["main", "backup"])
 
 
-class Communicator:
+class Communicator:  # pylint: disable=R0902
     def __init__(
         self,
         host,
@@ -40,8 +24,11 @@ class Communicator:
         self.username = username
         self.password = password
         self.os = os
-        self.session = None
-        self.cfg_conn = None
+
+        self._session = None
+        self._cfg_conn = None
+
+        # channel_io is a ref to input commands, and the corresponding output
         self.channel_io = []
         self.genie_external = False
 
@@ -49,8 +36,8 @@ class Communicator:
     def factory(
         cls,
         host=None,
-        username=TACACS_WRITE_USER_NAME,
-        password=TACACS_WRITE_USER_PASS,
+        username=None,
+        password=None,
         os=None,
     ):
         return BaseCommunicator.factory(
@@ -93,15 +80,15 @@ class Communicator:
         raise NotImplementedError
 
     async def get_version(self):
-        version_result = await self.cfg_conn.get_version()
+        version_result = await self._cfg_conn.get_version()
         return version_result.result
 
     async def get_startup_config(self):
-        startup_config_result = await self.cfg_conn.get_config(source="startup")
+        startup_config_result = await self._cfg_conn.get_config(source="startup")
         return startup_config_result.result
 
     async def get_running_config(self):
-        running_config_result = await self.cfg_conn.get_config(source="running")
+        running_config_result = await self._cfg_conn.get_config(source="running")
         return running_config_result.result
 
     async def get_boot_files(self):
@@ -120,7 +107,7 @@ class Communicator:
         overwrite: bool = False,
         force_config: bool = False,
         cleanup: bool = True,
-    ):
+    ):  # pylint: disable=R0913
         """
         :param operation: put/get file to/from device
         :param src: source file name
@@ -142,7 +129,7 @@ class Communicator:
                      altered
         :return: example: FileTransferResult(exists=True, transferred=True, verified=True)
         """
-        scp = AsyncSrapliTransferUtils(self.session)
+        scp = AsyncSrapliTransferUtils(self._session)
         return await scp.file_transfer(
             operation=operation,
             src=src,
@@ -159,9 +146,9 @@ class Communicator:
         connection = False
         while not connection:
             try:
-                await self.session.open()
-                if self.cfg_conn:
-                    await self.cfg_conn.prepare()
+                await self._session.open()
+                if self._cfg_conn:
+                    await self._cfg_conn.prepare()
                 connection = True
 
             except (ConnectionRefusedError, ConnectionLost) as e:
@@ -178,12 +165,15 @@ class Communicator:
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        await self.session.close()
+        await self._session.close()
 
 
 class BaseCommunicator(Communicator):
     @classmethod
     def factory(cls, *args, **kwargs):
+        from phantom_communicator.communicators.cisco_iosxe import CiscoIosXeCommunicator
+        from phantom_communicator.communicators.huawei_hvrp import HuaweiVrpCommunicator
+
         if kwargs.get("os") == "vrp":
             return HuaweiVrpCommunicator(*args, **kwargs)
         elif kwargs.get("os") in ["ios", "iosxe"]:
@@ -205,12 +195,12 @@ class BaseCommunicator(Communicator):
         the nicer method is to use the fuction: send_interactive_command which accepts multiple arguments
         :return:
         """
-        payload = await self.session.send_command(command)
+        payload = await self._session.send_command(command)
         self.channel_io.append({"command_input": command, "command_output": payload.result})
         return payload
 
     async def send_commands(self, commands: list):
-        payloads = await self.session.send_commands(commands)
+        payloads = await self._session.send_commands(commands)
         for payload in payloads.data:
             self.channel_io.append({"command_input": payload.channel_input, "command_output": payload.result})
         return payloads
@@ -227,129 +217,4 @@ class BaseCommunicator(Communicator):
         the optional third a bool for whether or not the input is "hidden" (i.e. password input)
         :return:
         """
-        return await self.session.send_interactive(commands)
-
-
-class CiscoIosXeCommunicator(BaseCommunicator):
-    def __init__(self, host, username, password, os):
-        super().__init__(host, username, password, os)
-        self.session = AsyncIOSXEDriver(
-            host=self.host,
-            auth_username=self.username,
-            auth_password=self.password,
-            auth_strict_key=False,
-            transport="asyncssh",
-            ssh_config_file="config",
-        )
-        self.cfg_conn = AsyncScrapliCfg(self.session)
-
-    async def get_boot_files(self) -> BootFiles:
-        boot_files = await self.send_command(GET_BOOT_STATEMENTS_IOSXE)
-
-        """
-        boot-start-marker
-        boot system flash:c800-universalk9-mz.SPA.154-3.M7.bin
-        boot system flash:c800-universalk9-mz.SPA.154-3.M2.bin
-        boot-end-marker
-        """
-
-        results = re.findall(r"boot system (?:flash|bootflash):(.*?)$", boot_files.result, re.MULTILINE)
-        main = results[0] if results else None
-        backup = results[1] if len(results) >= 2 else None
-
-        return BootFiles(main, backup)
-
-    async def save_device_config(self, hostname):
-        return await self.file_transfer(
-            operation="get",
-            src="running-config",
-            dst=f"{CONFIGSTORE}/{hostname}",
-            verify=True,
-            device_fs="system:",
-            overwrite=True,
-            force_config=True,
-            cleanup=False,
-        )
-
-
-class HuaweiVrpCommunicator(BaseCommunicator):
-    def __init__(self, host, username, password, os):
-        super().__init__(host, username, password, os)
-        self.session = AsyncHuaweiVRPDriver(
-            host=self.host,
-            auth_username=self.username,
-            auth_password=self.password,
-            auth_strict_key=False,
-            transport="asyncssh",
-            ssh_config_file="config",
-            privilege_levels=VRP_DEFAULT_PRIVILEGE_LEVELS,
-            default_desired_privilege_level="privilege_exec",
-            on_open=default_async_on_open,
-            on_close=default_async_on_close,
-        )
-        self.cfg_conn = AsyncScrapliCfg(self.session)
-
-    async def get_boot_files(self):
-        """
-        Example command output:
-
-        MainBoard:
-          Startup system software:                   flash:/AR657W-V300R019C10SPC200.cc
-          Next startup system software:              flash:/AR657W-V300R019C10SPC200.cc
-          Backup system software for next startup:   null
-          Startup saved-configuration file:          flash:/21500104862SL2600489-1595393893790.cfg
-          Next startup saved-configuration file:     flash:/21500104862SL2600489-1595393893790.cfg
-          Startup license file:                      null
-          Next startup license file:                 null
-          Startup patch package:                     null
-          Next startup patch package:                null
-          Startup voice-files:                       null
-          Next startup voice-files:                  null
-
-        :return:
-        """
-        boot_files = await self.send_command(GET_BOOT_STATEMENTS_HVRP)
-
-        main = re.search(r"Startup system software:\s+flash:/(.*?)$", boot_files.result, re.MULTILINE)
-        main = main[1] if main else None
-
-        # backup = re.search(
-        #     r"Backup system software for next startup:\s+(.*?)$",
-        #     boot_files, re.MULTILINE)
-        # backup = backup[1] if backup else None
-
-        """
-        We are not utilising the huawei backup feature as this is not quite
-        what we'd expect.
-
-        As discussed on 22-07-2020; we won't be setting the backup image for huawei.
-        The inner workings are as follows:
-
-        - Set "next" startup system-software
-        - This will make it so that on next boot it will try to boot that image
-        - If boot fails 3 times, it will go back to "current" which is the working
-        image that still works
-        - Backup would only be necessary in the case that doesn't work, but it's
-        very unlikely as:
-            A) even in a test scenario this was not possible to reproduce
-            B) the "current" would also not be able to boot
-        - Another note is there is not enough space for 3 image files on almost all huawei's.
-        """
-
-        return BootFiles(main=main, backup=None)
-
-    async def save_device_config(self, hostname):
-        get_boot_config_statement = await self.session.send_command("display startup")
-
-        pattern = "Startup saved-configuration file: * flash:/(.*)"
-        src_path = re.search(pattern, get_boot_config_statement.result)
-
-        return await self.file_transfer(
-            operation="get",
-            src=src_path[1],
-            dst=f"{CONFIGSTORE}/{hostname}",
-            verify=True,
-            overwrite=True,
-            force_config=True,
-            cleanup=False,
-        )
+        return await self._session.send_interactive(commands)

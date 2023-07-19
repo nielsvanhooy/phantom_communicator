@@ -3,7 +3,7 @@ import time
 
 import uvloop
 
-from phantom_communicator.communicator_asyncio import Communicator
+from phantom_communicator.communicators.base import Communicator
 
 devices = [
     ("10.1.1.151", "iosxe"),

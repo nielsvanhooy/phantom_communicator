@@ -1,0 +1,23 @@
+10.1.1.131:22:AsyncsshTransport::0:
+  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /home/donnyio/.ssh/id_rsa_jumpuser_rufus,
+    auth_private_key_passphrase: false, auth_secondary: false, auth_username: test008,
+    host: 10.1.1.131, port: 22, transport: asyncssh}
+  interactions:
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "<one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary, expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
+    - {channel_output: "\nInfo: The configuration takes effect on the current user
+        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
+        interface GigabitEthernet 0/0/0 | include Description, expected_channel_input_redacted: false}
+    - {channel_output: display interface GigabitEthernet 0/0/0 | include Description,
+      expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface\n\
+        <one-gv-2595bk-03>", expected_channel_input: display interface GigabitEthernet
+        0/0/1 | include Description, expected_channel_input_redacted: false}
+    - {channel_output: display interface GigabitEthernet 0/0/1 | include Description,
+      expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/1 Interface\n\
+        <one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>", expected_channel_input: exit, expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}

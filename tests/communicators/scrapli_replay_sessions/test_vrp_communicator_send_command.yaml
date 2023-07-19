@@ -1,0 +1,35 @@
+10.1.1.131:22:AsyncsshTransport::0:
+  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /home/donnyio/.ssh/id_rsa_jumpuser_rufus,
+    auth_private_key_passphrase: false, auth_secondary: false, auth_username: test008,
+    host: 10.1.1.131, port: 22, transport: asyncssh}
+  interactions:
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "<one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: screen-length
+        0 temporary, expected_channel_input_redacted: false}
+    - {channel_output: screen-length 0 temporary, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nInfo: The configuration takes effect on the current user
+        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
+        interface brief, expected_channel_input_redacted: false}
+    - {channel_output: display interface brief, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nPHY: Physical\n*down: administratively down\n(l): loopback
+    \n(s): spoofing\n(b): BFD down\n^down: standby\n(e): ETHOAM down\n(v): VirtualPort
+        \nInUti/OutUti: input utility/output utility\nInterface                   PHY\
+        \   Protocol  InUti OutUti   inErrors  outErrors\nCellular0/0/0          \
+        \     *down down         0%     0%          0          0\nGigabitEthernet0/0/0\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/1\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/2\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/3\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/4\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/5\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/6\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/7\
+        \        *down down         0%     0%          0          0\nGigabitEthernet0/0/8\
+        \        up    up        0.01%  0.01%          0          0\nGigabitEthernet0/0/9\
+        \        down  down         0%     0%          0          0\nGigabitEthernet0/0/10(v)\
+        \    up    down         0%     0%          0          0\nLoopBack0       \
+        \            up    up(s)        --     --          0          0\nNULL0   \
+        \                    up    up(s)        --     --          0          0\n\
+        Vlanif1                     *down down         --     --          0      \
+        \    0\n<one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>", expected_channel_input: exit, expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}

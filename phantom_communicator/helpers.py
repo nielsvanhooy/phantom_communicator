@@ -15,7 +15,7 @@ def genie_parse(os: str, command: str, output: str):
             " way:\n"
             "1: 'pip install -r requirements-genie.txt'\n"
         )
-        logger.warning(f"{title} - {message}")
+        logger.warning("%s - %s", title, message)
         return []
 
     genie_device = Device("scrapli_device", custom={"abstraction": {"order": ["os"]}}, os=os)
@@ -26,5 +26,5 @@ def genie_parse(os: str, command: str, output: str):
         if isinstance(genie_parsed_result, (list, dict)):
             return genie_parsed_result
     except Exception as exc:  # pylint: disable=W0703
-        logger.warning(f"failed to parse data with genie, genie raised exception: `{exc}`")
+        logger.warning("failed to parse data with genie, genie raised exception: `%s`", exc)
     return []

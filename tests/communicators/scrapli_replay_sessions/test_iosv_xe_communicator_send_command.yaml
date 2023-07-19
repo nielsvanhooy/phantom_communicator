@@ -1,0 +1,28 @@
+10.1.1.156:22:AsyncsshTransport::0:
+  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /home/donnyio/.ssh/id_rsa_jumpuser_rufus,
+    auth_private_key_passphrase: false, auth_secondary: false, auth_username: test008,
+    host: 10.1.1.156, port: 22, transport: asyncssh}
+  interactions:
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "one-gv-2595bk-56#", expected_channel_input: terminal length 0, expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#terminal length 0", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: terminal width
+        512, expected_channel_input_redacted: false}
+    - {channel_output: terminal width 512, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: show ip int
+        brief, expected_channel_input_redacted: false}
+    - {channel_output: show ip int brief, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nInterface              IP-Address      OK? Method Status\
+        \                Protocol\nGigabitEthernet0/0/0   192.168.12.17   YES NVRAM\
+        \  up                    up      \nGigabitEthernet0/0/1   unassigned     \
+        \ YES unset  up                    up      \nGigabitEthernet0/0/2   unassigned\
+        \      YES unset  down                  down    \nCellular0/1/0          10.124.234.45\
+        \   YES IPCP   up                    up      \nCellular0/1/1          unassigned\
+        \      YES NVRAM  administratively down down    \nGigabitEthernet0       unassigned\
+        \      YES unset  administratively down down    \nLoopback0              10.1.1.156\
+        \      YES NVRAM  up                    up      \nTunnel10               10.1.1.242\
+        \      YES NVRAM  up                    down    \none-gv-2595bk-56#", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: exit, expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
