@@ -30,7 +30,7 @@ class HuaweiVrpCommunicator(BaseCommunicator):
             on_open=default_async_on_open,
             on_close=default_async_on_close,
         )
-        self.cfg_conn = AsyncScrapliCfg(self._session)
+        self._cfg_conn = AsyncScrapliCfg(self._session)
 
     async def get_boot_files(self):
         """

@@ -9,7 +9,7 @@ from phantom_communicator.logger import logger
 
 
 async def get_data(ip):
-    communicator = Communicator.factory(host=ip, os="iosxe")
+    communicator = Communicator.factory(host=ip, os="iosxe", username="test008", password="test008")
 
     async with communicator as conn:
         logger.warning(f"gathering info for {ip}")
@@ -21,7 +21,7 @@ async def get_data(ip):
             ]
         )
         version = await conn.get_version()
-        startup_config = await conn.get_startup_config()
+        startup_config = await conn.get_running_config()
         boot_files = await conn.get_boot_files()
         genie_output = await conn.genie_parse_output()
 

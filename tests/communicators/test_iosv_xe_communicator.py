@@ -78,6 +78,18 @@ GigabitEthernet0       unassigned      YES unset  administratively down down""",
         assert cmd["command_output"] in expected_result
 
 
+# # @pytest.mark.scrapli_replay
+# async def test_iosv_xe_communicator_parse_genie(iosxe_communicator, caplog):
+#
+#     cmds = ["show version", "show ip route", "show run", "show ip route static", "show running-config | i ^ip route"]
+#
+#     async with iosxe_communicator as conn:
+#         response = await conn.send_commands(cmds)
+#         genie_output = await conn.genie_parse_output()
+#
+#     print(genie_output['show ip route static'])
+#     lala = "loeloe"
+
 async def test_iosv_xe_communicator_cant_connect():
     with pytest.raises(ConnectionLost):
         communicator = Communicator.factory(
