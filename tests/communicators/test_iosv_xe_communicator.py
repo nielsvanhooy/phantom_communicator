@@ -78,17 +78,6 @@ GigabitEthernet0       unassigned      YES unset  administratively down down""",
         assert cmd["command_output"] in expected_result
 
 
-# @pytest.mark.scrapli_replay
-async def test_iosv_xe_communicator_parse_genie(iosxe_communicator):
-
-    cmd = "show version"
-
-    async with iosxe_communicator as conn:
-        response = await conn.send_command(cmd)
-        genie_output = await conn.genie_parse_output()
-
-    lala = "loeloe"
-
 async def test_iosv_xe_communicator_cant_connect():
     with pytest.raises(ConnectionLost):
         communicator = Communicator.factory(
