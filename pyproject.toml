@@ -55,7 +55,7 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 asyncssh = "^2.13.2"
 pyats = { version = "^23.6", optional=true}
-python = ">=3.11,<3.13"
+python = ">=3.10,<3.12,!=3.11.0"
 scrapli = "^2023.1.30"
 scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
 scrapli-community = "^2023.1.30"
