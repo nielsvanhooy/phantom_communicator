@@ -41,7 +41,7 @@ disallow_untyped_defs = true
 exclude = "bifrost/orm/migrations"
 follow_imports = "silent"
 ignore_missing_imports = true
-python_version = "3.10"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 
@@ -53,13 +53,13 @@ readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-asyncssh = "^2.13.2"
-pyats = { version = "^23.6", optional=true}
+asyncssh = "^2.14.1"
+pyats = "^23.10"
 python = ">=3.10,<3.12"
-scrapli = "^2023.1.30"
+scrapli = "^2023.7.30"
 scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
-scrapli-community = "^2023.1.30"
-scrapli-replay = "^2023.1.30.post1"
+scrapli-community = "^2023.7.30"
+scrapli-replay = "^2023.7.30"
 scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
 pytest = "^7.4.0"
 genie-libs-parser = {git = "https://github.com/nielsvanhooy/genieparser.git", rev = "master_backup"}
