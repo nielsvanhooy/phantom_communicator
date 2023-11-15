@@ -103,7 +103,7 @@ async def test_iosv_xe_communicator_cant_connect():
 async def test_iosv_xe_communicator_auth_failed():
     with pytest.raises(CommunicatorAuthenticationFailed):
         communicator = Communicator.factory(
-            host="10.1.1.156", username="lagen005", password="test008", os="vrp"
+            host="10.1.1.156", username="test008", password="test008", os="vrp"
         )
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
