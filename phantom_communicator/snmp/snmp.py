@@ -32,4 +32,5 @@ async def snmp_get_and_bulk(addr: str, community: str, oids: List[str], timeout:
                     snmp_data |= {k: v}
         return snmp_data
 
+
 asyncio.run(snmp_get_and_bulk(ADDRESS, COMMUNITY, OIDS))

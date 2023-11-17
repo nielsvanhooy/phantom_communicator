@@ -10,6 +10,7 @@ from phantom_communicator.logger import logger
 
 # logging.basicConfig(level=logging.INFO)
 
+
 async def get_data(ip):
     communicator = Communicator.factory(host=ip, os="iosxe", username="test008", password="test008")
 
