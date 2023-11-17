@@ -55,7 +55,7 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 asyncssh = "^2.14.1"
 pyats = "^23.10"
-python = ">=3.11"
+python = ">=3.11,<4.0"
 scrapli = "^2023.7.30"
 scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
 scrapli-community = "^2023.7.30"
@@ -63,6 +63,7 @@ scrapli-replay = "^2023.7.30"
 scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
 pytest = "^7.4.0"
 genie-libs-parser = {git = "https://github.com/nielsvanhooy/genieparser.git", rev = "master_backup"}
+gufo-snmp = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.5"
