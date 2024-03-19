@@ -29,14 +29,14 @@ async def test_vrp_communicator_send_command(vrp_communicator):
     expected_result = """PHY: Physical
 *down: administratively down
 (l): loopback
-(s): spoofing
+ (s): spoofing
 (b): BFD down
 ^down: standby
 (e): ETHOAM down
 (v): VirtualPort
-InUti/OutUti: input utility/output utility
+ InUti/OutUti: input utility/output utility
 Interface                   PHY   Protocol  InUti OutUti   inErrors  outErrors
-Cellular0/0/0               *down down         0%     0%          0          0
+Cellular0/0/0               up    up        0.01%  0.01%          0          0
 GigabitEthernet0/0/0        *down down         0%     0%          0          0
 GigabitEthernet0/0/1        *down down         0%     0%          0          0
 GigabitEthernet0/0/2        *down down         0%     0%          0          0
@@ -50,7 +50,9 @@ GigabitEthernet0/0/9        down  down         0%     0%          0          0
 GigabitEthernet0/0/10(v)    up    down         0%     0%          0          0
 LoopBack0                   up    up(s)        --     --          0          0
 NULL0                       up    up(s)        --     --          0          0
-Vlanif1                     *down down         --     --          0          0"""
+Tunnel0/0/10                up    up           --     --          0          0
+Vlanif1                     down  down         --     --          0          0
+Vlanif10                    down  down         --     --          0          0"""
 
     cmd = "display interface brief"
 

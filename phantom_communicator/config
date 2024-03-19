@@ -2,7 +2,7 @@ Host 10.1.1.* !jumphost
     Proxycommand ssh jumphost -W %h:%p
 
 Host jumphost
-    IdentityFile /home/hooij804/.ssh/id_rsa_jumpuser_rufus
+    IdentityFile /Users/nielsvanhooij/.ssh/id_rsa_jumpuser_rufus
     IdentitiesOnly yes
     User jumpuser
     HostName 10.17.28.210
@@ -10,6 +10,7 @@ Host jumphost
 Host *
     StrictHostKeyChecking no
     KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+    HostKeyAlgorithms +ssh-rsa
 
 Host *
     ServerAliveInterval 20

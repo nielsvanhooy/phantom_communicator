@@ -55,12 +55,13 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 asyncssh = "^2.14.2"
 python = ">=3.11,<4.0"
-scrapli = "^2024.1.30"
 scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
+scrapli = {extras = ["genie"], version = "^2024.1.30"}
 scrapli-community = "^2024.1.30"
 scrapli-replay = "^2024.1.30"
 scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
 pytest = "^8.1.1"
+genie = "^24.2"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.8"

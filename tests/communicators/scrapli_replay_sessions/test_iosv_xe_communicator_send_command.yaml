@@ -1,10 +1,27 @@
 10.1.1.156:22:AsyncsshTransport::0:
-  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /home/donnyio/.ssh/id_rsa_jumpuser_rufus,
+  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /Users/nielsvanhooij/.ssh/id_rsa_jumpuser_rufus,
     auth_private_key_passphrase: false, auth_secondary: false, auth_username: test008,
     host: 10.1.1.156, port: 22, transport: asyncssh}
   interactions:
     - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
-    - {channel_output: "one-gv-2595bk-56#", expected_channel_input: terminal length 0, expected_channel_input_redacted: false}
+    - {channel_output: "\n**************************************************************\n\
+        *                                                            *\n*   You have
+        logged on to the KPN Managed VPN service.       *\n*   Network management
+        from The Hague, Netherlands.          *\n*                               \
+        \                             *\n*   Use of this system/network is restricted
+        to employees    *\n*   of KPN, employment agency staff, work experience  \
+        \       *\n*   trainees and persons with a contract of employment       *\n\
+        *   provided that they are working for KPN and are           *\n*   authorized
+        to use the system.                            *\n*                       \
+        \                                     *\n*   The software and data in this
+        system/network are owned   *\n*   by KPN and may be viewed, changed, copied
+        or deleted     *\n*   only by authorized persons for the purpose of their\
+        \      *\n*   work for KPN.                                            *\n\
+        *                                                            *\n*   Use Ctrl
+        z and quit to logout.                           *\n*                     \
+        \                                       *\n*                             \
+        \                               *\n**************************************************************\n\
+        \none-gv-2595bk-56#", expected_channel_input: terminal length 0, expected_channel_input_redacted: false}
     - {channel_output: "\none-gv-2595bk-56#terminal length 0", expected_channel_input: "\n",
       expected_channel_input_redacted: false}
     - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: terminal width
@@ -16,8 +33,8 @@
     - {channel_output: "\nInterface              IP-Address      OK? Method Status\
         \                Protocol\nGigabitEthernet0/0/0   192.168.12.17   YES NVRAM\
         \  up                    up      \nGigabitEthernet0/0/1   unassigned     \
-        \ YES unset  up                    up      \nGigabitEthernet0/0/2   unassigned\
-        \      YES unset  down                  down    \nCellular0/1/0          10.124.234.45\
+        \ YES NVRAM  up                    up      \nGigabitEthernet0/0/2   unassigned\
+        \      YES NVRAM  down                  down    \nCellular0/1/0          10.124.234.45\
         \   YES IPCP   up                    up      \nCellular0/1/1          unassigned\
         \      YES NVRAM  administratively down down    \nGigabitEthernet0       unassigned\
         \      YES unset  administratively down down    \nLoopback0              10.1.1.156\

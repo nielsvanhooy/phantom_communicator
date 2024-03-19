@@ -2,7 +2,6 @@ import pytest
 
 from phantom_communicator.communicators.base import Communicator
 from phantom_communicator.communicators.cisco_iosxe import CiscoIosXeCommunicator
-from asyncssh import ConnectionLost
 
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed
 from tests.fake_cfg_conn import FakeCfgConn
@@ -33,8 +32,8 @@ async def test_iosv_xe_communicator_selected(iosxe_communicator):
 async def test_iosv_xe_communicator_send_command(iosxe_communicator):
     expected_result = """Interface              IP-Address      OK? Method Status                Protocol
 GigabitEthernet0/0/0   192.168.12.17   YES NVRAM  up                    up
-GigabitEthernet0/0/1   unassigned      YES unset  up                    up
-GigabitEthernet0/0/2   unassigned      YES unset  down                  down
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up
+GigabitEthernet0/0/2   unassigned      YES NVRAM  down                  down
 Cellular0/1/0          10.124.234.45   YES IPCP   up                    up
 Cellular0/1/1          unassigned      YES NVRAM  administratively down down
 GigabitEthernet0       unassigned      YES unset  administratively down down
@@ -57,8 +56,8 @@ Tunnel10               10.1.1.242      YES NVRAM  up                    down"""
 async def test_iosv_xe_communicator_send_commands(iosxe_communicator):
     expected_result = [
         """GigabitEthernet0/0/0   192.168.12.17   YES NVRAM  up                    up
-GigabitEthernet0/0/1   unassigned      YES unset  up                    up
-GigabitEthernet0/0/2   unassigned      YES unset  down                  down
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up
+GigabitEthernet0/0/2   unassigned      YES NVRAM  down                  down
 GigabitEthernet0       unassigned      YES unset  administratively down down""",
         "Cisco IOS XE Software, Version 16.09.07",
     ]
@@ -91,9 +90,9 @@ GigabitEthernet0       unassigned      YES unset  administratively down down""",
 #     lala = "loeloe"
 
 async def test_iosv_xe_communicator_cant_connect():
-    with pytest.raises(ConnectionLost):
+    with pytest.raises(CommunicatorAuthenticationFailed):
         communicator = Communicator.factory(
-            host="10.1.1.1", username="test008", password="test008", os="vrp"
+            host="10.1.1.200", username="test008", password="test008", os="iosxe"
         )
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
@@ -103,7 +102,7 @@ async def test_iosv_xe_communicator_cant_connect():
 async def test_iosv_xe_communicator_auth_failed():
     with pytest.raises(CommunicatorAuthenticationFailed):
         communicator = Communicator.factory(
-            host="10.1.1.156", username="test008", password="test008", os="vrp"
+            host="10.1.1.156", username="test008", password="test008", os="iosxe"
         )
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
