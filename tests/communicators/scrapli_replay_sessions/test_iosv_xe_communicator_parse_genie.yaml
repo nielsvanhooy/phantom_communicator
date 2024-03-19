@@ -1,0 +1,297 @@
+10.1.1.156:22:AsyncsshTransport::0:
+  connection_profile: {auth_bypass: false, auth_password: true, auth_private_key: /Users/nielsvanhooij/.ssh/id_rsa_jumpuser_rufus,
+    auth_private_key_passphrase: false, auth_secondary: false, auth_username: lagen008,
+    host: 10.1.1.156, port: 22, transport: asyncssh}
+  interactions:
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\n**************************************************************\n\
+        *                                                            *\n*   You have
+        logged on to the KPN Managed VPN service.       *\n*   Network management
+        from The Hague, Netherlands.          *\n*                               \
+        \                             *\n*   Use of this system/network is restricted
+        to employees    *\n*   of KPN, employment agency staff, work experience  \
+        \       *\n*   trainees and persons with a contract of employment       *\n\
+        *   provided that they are working for KPN and are           *\n*   authorized
+        to use the system.                            *\n*                       \
+        \                                     *\n*   The software and data in this
+        system/network are owned   *\n*   by KPN and may be viewed, changed, copied
+        or deleted     *\n*   only by authorized persons for the purpose of their\
+        \      *\n*   work for KPN.                                            *\n\
+        *                                                            *\n*   Use Ctrl
+        z and quit to logout.                           *\n*                     \
+        \                                       *\n*                             \
+        \                               *\n**************************************************************\n\
+        one-gv-2595bk-56#", expected_channel_input: terminal length 0, expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#terminal length 0", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: terminal width
+        512, expected_channel_input_redacted: false}
+    - {channel_output: terminal width 512, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: show version,
+      expected_channel_input_redacted: false}
+    - {channel_output: show version, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nCisco IOS XE Software, Version 16.09.07\nCisco IOS Software
+        [Fuji], ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.7, RELEASE
+        SOFTWARE (fc1)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright
+        (c) 1986-2021 by Cisco Systems, Inc.\nCompiled Wed 10-Feb-21 09:23 by mcpre\n
+        \n\nCisco IOS-XE software, Copyright (c) 2005-2021 by cisco Systems, Inc.\n
+        All rights reserved.  Certain components of Cisco IOS-XE software are\nlicensed
+        under the GNU General Public License (\"GPL\") Version 2.0.  The\nsoftware
+        code licensed under GPL Version 2.0 is free software that comes\nwith ABSOLUTELY
+        NO WARRANTY.  You can redistribute and/or modify such\nGPL code under the
+        terms of GPL Version 2.0.  For more details, see the\ndocumentation or \"
+        License Notice\" file accompanying the IOS-XE software,\nor the applicable
+        URL provided on the flyer accompanying the IOS-XE\nsoftware.\n\n\nROM: IOS-XE
+        ROMMON\n\none-gv-2595bk-56 uptime is 14 weeks, 4 days, 2 hours, 38 minutes\n
+        Uptime for this control processor is 14 weeks, 4 days, 2 hours, 40 minutes\n
+        System returned to ROM by Reload Command\nSystem image file is \"bootflash:isr4300-universalk9.16.09.07.SPA.bin\"\
+        \nLast reload reason: Reload Command\n\n\n\nThis product contains cryptographic
+        features and is subject to United\nStates and local country laws governing
+        import, export, transfer and\nuse. Delivery of Cisco cryptographic products
+        does not imply\nthird-party authority to import, export, distribute or use
+        encryption.\nImporters, exporters, distributors and users are responsible
+        for\ncompliance with U.S. and local country laws. By using this product you\n
+        agree to comply with applicable laws and regulations. If you are unable\n
+        to comply with U.S. and local laws, return this product immediately.\n\nA
+        summary of U.S. laws governing Cisco cryptographic products may be found at:\n
+        http://www.cisco.com/wwl/export/crypto/tool/stqrg.html\n\nIf you require further
+        assistance please contact us by sending email to\nexport@cisco.com.\n\n\n\n
+        Suite License Information for Module:'esg' \n\n--------------------------------------------------------------------------------\n\
+        Suite                 Suite Current         Type           Suite Next reboot\
+        \     \n--------------------------------------------------------------------------------\n\
+        FoundationSuiteK9     None                  None           None          \
+        \        \nsecurityk9\nappxk9\n\nAdvUCSuiteK9          None              \
+        \    None           None                  \nuck9\ncme-srst\ncube\n\n\nTechnology
+        Package License Information: \n\n-----------------------------------------------------------------\n\
+        Technology    Technology-package           Technology-package\n          \
+        \    Current       Type           Next reboot  \n------------------------------------------------------------------\n\
+        appxk9           None             None             None\nuck9            \
+        \ None             None             None\nsecurityk9       None          \
+        \   None             None\nipbase           ipbasek9         Permanent   \
+        \     ipbasek9\n\nThe current throughput level is 100000 kbps \n\n\nSmart
+        Licensing Status: Smart Licensing is DISABLED\n\ncisco ISR4331/K9 (1RU) processor
+        with 1784185K/6147K bytes of memory.\nProcessor board ID FDO2309A14M\n3 Gigabit
+        Ethernet interfaces\n2 Cellular interfaces\n32768K bytes of non-volatile configuration
+        memory.\n4194304K bytes of physical memory.\n3125247K bytes of flash memory
+        at bootflash:.\n0K bytes of WebUI ODM Files at webui:.\n\nConfiguration register
+        is 0x2102\n\none-gv-2595bk-56#", expected_channel_input: show ip route, expected_channel_input_redacted: false}
+    - {channel_output: show ip route, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nCodes: L - local, C - connected, S - static, R - RIP, M
+        - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF
+        inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external
+        type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n    \
+        \   i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n\
+        \       ia - IS-IS inter area, * - candidate default, U - per-user static
+        route\n       o - ODR, P - periodic downloaded static route, H - NHRP, l -
+        LISP\n       a - application route\n       + - replicated route, % - next
+        hop override, p - overrides from PfR\n\nGateway of last resort is 192.168.12.18
+        to network 0.0.0.0\n\nS*    0.0.0.0/0 [1/0] via 192.168.12.18\n      10.0.0.0/32
+        is subnetted, 3 subnets\nC        10.1.1.156 is directly connected, Loopback0\n\
+        C        10.124.234.45 is directly connected, Cellular0/1/0\nS        10.127.249.45
+        is directly connected, Null0\n      145.7.0.0/32 is subnetted, 1 subnets\n\
+        S        145.7.64.247 is directly connected, Null0\n      145.13.0.0/16 is
+        variably subnetted, 2 subnets, 2 masks\nS        145.13.71.128/25 [1/0] via
+        192.168.12.18\nS        145.13.76.0/24 [1/0] via 192.168.12.18\n      192.168.12.0/24
+        is variably subnetted, 2 subnets, 2 masks\nC        192.168.12.16/30 is directly
+        connected, GigabitEthernet0/0/0\nL        192.168.12.17/32 is directly connected,
+        GigabitEthernet0/0/0\nS     192.168.28.0/24 [1/0] via 192.168.12.18\none-gv-2595bk-56#",
+      expected_channel_input: show run, expected_channel_input_redacted: false}
+    - {channel_output: show run, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nBuilding configuration...\n\n\nCurrent configuration : 12535
+        bytes\n!\n! Last configuration change at 15:46:45 CET Tue Mar 19 2024 by EEM_user\n
+        !\nversion 16.9\nno service pad\nservice tcp-keepalives-in\nservice tcp-keepalives-out\n
+        service timestamps debug datetime msec localtime show-timezone\nservice timestamps
+        log datetime msec localtime show-timezone\nservice password-encryption\nno
+        service dhcp\nno service password-recovery \nplatform qfp utilization monitor
+        load 80\nplatform punt-keepalive disable-kernel-core\nplatform qos match-statistics
+        per-filter\nplatform qos match-statistics per-ace\nplatform usb disable\n
+        platform hardware throughput level 100000\n!\nhostname one-gv-2595bk-56\n
+        !\nboot-start-marker\nboot system bootflash:isr4300-universalk9.16.09.07.SPA.bin\n
+        boot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n address-family ipv4\n
+        exit-address-family\n !\n address-family ipv6\n exit-address-family\n!\nlogging
+        buffered 16000\nlogging persistent size 266346496 immediate protected\nenable
+        secret 9 $9$vgeqSa0Q9tGHPK$YVNzSZqr0TOUbn51PNmW725Sa7o4nE9.LA2RL.9wVb6\n!\n
+        aaa new-model\n!\n!\naaa authentication fail-message ^C\n**************************************************************\n\
+        *                                                            *\n*        \
+        \                Login Failed!                       *\n*                \
+        \                                            *\n*               Unauthorized
+        access to this                  *\n*               system/network is prohibited.\
+        \                *\n*                                                    \
+        \        *\n*                                                            *\n
+        **************************************************************\n^C\naaa authentication
+        login default group tacacs+ enable\naaa authentication enable default group
+        tacacs+ enable\naaa authorization console\naaa authorization exec default
+        group tacacs+ if-authenticated \naaa authorization commands 15 default group
+        tacacs+ none \naaa accounting exec default start-stop group tacacs+\naaa accounting
+        commands 1 default start-stop group tacacs+\naaa accounting commands 15 default
+        start-stop group tacacs+\n!\n!\n!\n!\n!\n!\naaa session-id common\nclock timezone
+        CET 1 0\nclock summer-time CEST recurring last Sun Mar 2:00 last Sun Oct 3:00\n
+        no ip source-route\n!\nno ip bootp server\nno ip domain lookup\nip domain
+        name mrs\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n
+        vtp mode transparent\nmultilink bundle-name authenticated\n!\n!\n!\n!\n!\n
+        license udi pid ISR4331/K9 sn FDO23070MG6\nlicense accept end user agreement\n
+        no license smart enable\ndiagnostic bootup level minimal\n!\nspanning-tree
+        extend system-id\n!\n!\n!\n!\nredundancy\n mode none\n!\ncontroller Cellular
+        0/1/0\n no lte firmware auto-sim\n no lte gps enable\n lte modem link-recovery
+        rssi onset-threshold -110\n lte modem link-recovery monitor-timer 20\n lte
+        modem link-recovery wait-timer 10\n lte modem link-recovery debounce-count
+        6\n!\n!\n!\ntrack 1 ip sla 1 reachability\n delay down 30 up 30\n!\ntrack
+        180 ip sla 180\n delay down 180 up 180\n!\nno cdp run\n!\nclass-map match-any
+        management-traffic\n match access-group 166\n!\npolicy-map policy-cbwfq\n
+        class management-traffic\n  bandwidth remaining percent 1 \n  set ip dscp
+        af21\n class class-default\n  fair-queue\n  random-detect\n  random-detect
+        ecn\npolicy-map shape-to-20\n class class-default\n  shape average 19200000
+        76800 0 \n   service-policy policy-cbwfq\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n
+        ip address 10.1.1.156 255.255.255.255\n!\ninterface Tunnel10\n description
+        3G/4G backup to ONEM1160\n ip address 10.1.1.242 255.255.255.254\n ip tcp
+        adjust-mss 1436\n keepalive 20 3\n tunnel source Cellular0/1/0\n tunnel destination
+        10.127.249.45\n!\ninterface GigabitEthernet0/0/0\n description Connection
+        to Epacity\n ip address 192.168.12.17 255.255.255.252\n media-type rj45\n
+        speed 100\n no negotiation auto\n service-policy output shape-to-20\n!\ninterface
+        GigabitEthernet0/0/1\n no ip address\n negotiation auto\n!\ninterface GigabitEthernet0/0/2\n
+        no ip address\n negotiation auto\n!\ninterface Cellular0/1/0\n description
+        145.7.64.247 Backup Link # cellular-ip:10.124.234.45 #\n ip address negotiated\n
+        ip access-group block_addresses_to_cellular in\n load-interval 30\n dialer
+        in-band\n dialer idle-timeout 0\n dialer watch-group 1\n dialer-group 1\n
+        pulse-time 1\n service-policy output policy-cbwfq\n ip virtual-reassembly\n
+        !\ninterface Cellular0/1/1\n no ip address\n shutdown\n!\ninterface GigabitEthernet0\n
+        vrf forwarding Mgmt-intf\n no ip address\n shutdown\n negotiation auto\n!\n
+        ip local policy route-map route-traffic-to-cellular-if\nno ip forward-protocol
+        nd\nno ip http server\nno ip http secure-server\nno ip nat service sip tcp
+        port 5060\nno ip nat service sip udp port 5060\nip route 10.127.249.45 255.255.255.255
+        Null0 track 1\nip route 192.168.28.0 255.255.255.0 192.168.12.18 track 1\n
+        ip route 0.0.0.0 0.0.0.0 192.168.12.18 track 1\nip route 0.0.0.0 0.0.0.0 Tunnel10
+        5\nip route 0.0.0.0 0.0.0.0 Cellular0/1/0 15\nip route 10.127.249.45 255.255.255.255
+        Cellular0/1/0 10\nip route 145.7.64.247 255.255.255.255 Null0\nip route 145.13.71.128
+        255.255.255.128 192.168.12.18\nip route 145.13.76.0 255.255.255.0 192.168.12.18\n
+        ip route 192.168.28.0 255.255.255.0 Tunnel10 5\nip route 192.168.28.0 255.255.255.0
+        Null0 10\n!\nip ssh time-out 60\nip ssh logging events\nip ssh version 2\n
+        ip ssh server algorithm mac hmac-sha2-512 hmac-sha2-256 hmac-sha1\nip scp
+        server enable\n!\n!\nip access-list extended block_addresses_to_cellular\n
+        deny   ip host 192.168.12.18 any\n permit ip any any\nip sla 1\n icmp-echo
+        192.168.12.18 source-interface Loopback0\n frequency 10\nip sla schedule 1
+        life forever start-time now\nip sla 180\n icmp-echo 145.7.64.247 source-interface
+        Cellular0/1/0\n tos 192\n tag Test_mobile_connection\n frequency 30\nip sla
+        schedule 180 life forever start-time now\nlogging history notifications\n
+        logging origin-id hostname\nlogging source-interface Loopback0\nlogging snmp-trap
+        emergencies\nlogging snmp-trap alerts\nlogging snmp-trap critical\nlogging
+        snmp-trap errors\nlogging snmp-trap warnings\nlogging snmp-trap notifications\n
+        logging host 192.168.28.66\naccess-list 2 deny   any\naccess-list 3 permit
+        193.172.69.107\naccess-list 3 permit 193.172.69.75\naccess-list 3 deny   any\n
+        access-list 10 permit 192.168.28.0 0.0.0.255\naccess-list 10 deny   any\n
+        access-list 14 permit 192.168.28.0 0.0.0.255\naccess-list 14 deny   any\n
+        access-list 93 permit 192.168.28.0 0.0.0.255\naccess-list 93 permit 145.13.71.128
+        0.0.0.127\naccess-list 93 permit 145.13.76.0 0.0.0.255\naccess-list 93 deny\
+        \   any\nip access-list extended 103\n permit icmp any host 145.7.64.247\n
+        ip access-list extended 160\n deny   ip any 10.0.0.0 0.7.255.255\n deny  \
+        \ ip 10.0.0.0 0.7.255.255 any\n deny   ip any 192.168.28.0 0.0.0.255\n deny\
+        \   ip 192.168.28.0 0.0.0.255 any\n deny   ip any 145.13.71.128 0.0.0.127\n
+        deny   ip 145.13.71.128 0.0.0.127 any\n deny   ip any 145.13.76.0 0.0.0.255\n
+        deny   ip 145.13.76.0 0.0.0.255 any\n permit ip any any\nip access-list extended
+        166\n permit ip host 10.1.1.156 192.168.28.0 0.0.0.255\n permit ip host 10.1.1.156
+        145.13.71.128 0.0.0.127\n permit ip host 10.1.1.156 145.13.76.0 0.0.0.255\n
+        deny   ip any any\ndialer watch-list 1 delay route-check initial 180\ndialer
+        watch-list 1 delay connect 1\ndialer-list 1 protocol ip permit\n!\n!\nroute-map
+        route-traffic-to-cellular-if permit 10 \n match ip address 103\n set interface
+        Cellular0/1/0\n!\nsnmp-server community 7QuIvTihXlxkEicZl8SAinw6 RO 10\nsnmp-server
+        community zQIVUcbdV6lFnM4Oo075Ii2M RO 93\nsnmp-server trap-source Loopback0\n
+        snmp-server enable traps event-manager\nsnmp-server enable traps syslog\n
+        snmp-server host 145.13.76.159 version 2c zQIVUcbdV6lFnM4Oo075Ii2M \nsnmp-server
+        host 145.13.76.33 version 2c zQIVUcbdV6lFnM4Oo075Ii2M \nsnmp ifmib ifindex
+        persist\ntacacs server pri-acs\n address ipv4 192.168.28.191\n key 7 060D1F2F4D56000B0A04\n
+        !\n!\n!\n!\ncontrol-plane\n!\nprivilege exec level 1 traceroute\nprivilege
+        exec level 1 ping\nbanner exec ^C\n**************************************************************\n\
+        *                                                            *\n*   You have
+        logged on to the KPN Managed VPN service.       *\n*   Network management
+        from The Hague, Netherlands.          *\n*                               \
+        \                             *\n*   Use of this system/network is restricted
+        to employees    *\n*   of KPN, employment agency staff, work experience  \
+        \       *\n*   trainees and persons with a contract of employment       *\n\
+        *   provided that they are working for KPN and are           *\n*   authorized
+        to use the system.                            *\n*                       \
+        \                                     *\n*   The software and data in this
+        system/network are owned   *\n*   by KPN and may be viewed, changed, copied
+        or deleted     *\n*   only by authorized persons for the purpose of their\
+        \      *\n*   work for KPN.                                            *\n\
+        *                                                            *\n*   Use Ctrl
+        z and quit to logout.                           *\n*                     \
+        \                                       *\n*                             \
+        \                               *\n**************************************************************\n
+        ^C\nbanner login ^C\n**************************************************************\n\
+        *      .                                                     *\n*     / \\\
+        \        UNAUTHORISED ACCESS PROHIBITED !!           *\n*    (kpn)       \
+        \                                            *\n*     \\_/    Contact your
+        kpn servicedesk for questions.     *\n*                                  \
+        \                          *\n**************************************************************\n
+        ^C\n!\nline con 0\n exec-timeout 9 0\n password 7 022D2F491132250D68620F401D4507593D2B03392F1B236103\n
+        transport preferred none\n transport input none\n transport output none\n
+        stopbits 1\nline aux 0\n no exec\n transport preferred none\n transport output
+        none\n stopbits 1\nline vty 0 4\n access-class 14 in\n exec-timeout 9 0\n
+        password 7 047D211E590C44640035011F055329253E05770D3E2300012A\n logging synchronous\n
+        transport preferred none\n transport input ssh\n transport output none\n!\n
+        ntp access-group peer 3\nntp access-group serve 2\nntp access-group serve-only
+        2\nntp access-group query-only 2\nntp server 193.172.69.75 prefer\nntp server
+        193.172.69.107\n!\n!\n!\n!\nevent manager session cli username \"EEM_user\"\
+        \nevent manager applet Cellular-Modem-24Hrs-Down-V12\n event track 180 state
+        down maxrun 600\n trigger delay 86400\n action 101 track read 180\n action
+        102 if $_track_state eq \"down\"\n action 103  cli command \"enable\"\n action
+        104  cli command \"show interfaces Cellular0/1/0\"\n action 105  string match
+        \"*administratively*\" \"$_cli_result\"\n action 106  if $_string_result eq
+        \"1\"\n action 107   snmp-trap strdata \"Cellular Interface is administratively
+        Down, WOA_SNOW_Ticket\"\n action 108   syslog priority notifications msg \"\
+        Cellular Interface is administratively Down, WOA_SNOW_Ticket\"\n action 109\
+        \  else\n action 110   snmp-trap strdata \"Mobile Connection is 24Hrs Down,
+        WOA_SNOW_Ticket\"\n action 111   syslog priority notifications msg \"Mobile
+        Connection is 24Hrs Down, WOA_SNOW_Ticket\"\n action 112  end\n action 113
+        end\nevent manager applet Modem-Power-Cycle-V12\n event tag TRACK-180 track
+        180 state down\n event tag WATCHDOG-VERIFY-CELLULAR timer watchdog time 1440
+        maxrun 600\n trigger\n  correlate event TRACK-180 or event WATCHDOG-VERIFY-CELLULAR\n
+        action 201 track read 180\n action 202 if $_track_state eq \"down\"\n action
+        203  cli command \"enable\"\n action 204  cli command \"show interfaces Cellular0/1/0\"\
+        \n action 206  string match \"*administratively*\" \"$_cli_result\"\n action
+        207  if $_string_result eq \"1\"\n action 208   syslog priority notifications
+        msg \"Cellular Interface is Admin Down NO modem-power-cycle\"\n action 209\
+        \  else\n action 210   cli command \"configure terminal\"\n action 211   cli
+        command \"interface Cellular0/1/0\"\n action 212   cli command \"shutdown\"\
+        \n action 213   wait 5\n action 214   cli command \"no shutdown\"\n action
+        215   cli command \"exit\"\n action 216   wait 5\n action 217   cli command
+        \"service internal\"\n action 218   cli command \"do test Cellular 0/1/0 modem-power-cycle\"\
+        \n action 219   cli command \"no service internal\"\n action 220   cli command
+        \"end\"\n action 221   syslog priority notifications msg \"Mobile Connection
+        is Down Modem_Power_Cycled\"\n action 222   cli command \"write memory\"\n
+        action 223  end\n action 224 end\nevent manager applet Cellular-Modem-1Hrs-Up-V12\n
+        event track 180 state up maxrun 600\n trigger delay 3600\n action 301 track
+        read 180\n action 302 if $_track_state eq \"up\"\n action 303  snmp-trap strdata
+        \"Cellular connection is working, WOA_SNOW_Ticket_Clear\"\n action 304  syslog
+        priority notifications msg \"Cellular connection is working, WOA_SNOW_Ticket_Clear\"\
+        \n action 305 end\n!\nend\n\none-gv-2595bk-56#", expected_channel_input: show
+        ip route static, expected_channel_input_redacted: false}
+    - {channel_output: show ip route static, expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\nCodes: L - local, C - connected, S - static, R - RIP, M
+        - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF
+        inter area \n       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external
+        type 2\n       E1 - OSPF external type 1, E2 - OSPF external type 2\n    \
+        \   i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2\n\
+        \       ia - IS-IS inter area, * - candidate default, U - per-user static
+        route\n       o - ODR, P - periodic downloaded static route, H - NHRP, l -
+        LISP\n       a - application route\n       + - replicated route, % - next
+        hop override, p - overrides from PfR\n\nGateway of last resort is 192.168.12.18
+        to network 0.0.0.0\n\nS*    0.0.0.0/0 [1/0] via 192.168.12.18\n      10.0.0.0/32
+        is subnetted, 3 subnets\nS        10.127.249.45 is directly connected, Null0\n\
+        \      145.7.0.0/32 is subnetted, 1 subnets\nS        145.7.64.247 is directly
+        connected, Null0\n      145.13.0.0/16 is variably subnetted, 2 subnets, 2
+        masks\nS        145.13.71.128/25 [1/0] via 192.168.12.18\nS        145.13.76.0/24
+        [1/0] via 192.168.12.18\nS     192.168.28.0/24 [1/0] via 192.168.12.18\none-gv-2595bk-56#",
+      expected_channel_input: show running-config | i ^ip route, expected_channel_input_redacted: false}
+    - {channel_output: show running-config | i ^ip route, expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
+    - {channel_output: "\nip route 10.127.249.45 255.255.255.255 Null0 track 1\nip
+        route 192.168.28.0 255.255.255.0 192.168.12.18 track 1\nip route 0.0.0.0 0.0.0.0
+        192.168.12.18 track 1\nip route 0.0.0.0 0.0.0.0 Tunnel10 5\nip route 0.0.0.0
+        0.0.0.0 Cellular0/1/0 15\nip route 10.127.249.45 255.255.255.255 Cellular0/1/0
+        10\nip route 145.7.64.247 255.255.255.255 Null0\nip route 145.13.71.128 255.255.255.128
+        192.168.12.18\nip route 145.13.76.0 255.255.255.0 192.168.12.18\nip route
+        192.168.28.0 255.255.255.0 Tunnel10 5\nip route 192.168.28.0 255.255.255.0
+        Null0 10\none-gv-2595bk-56#", expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\none-gv-2595bk-56#", expected_channel_input: exit, expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
