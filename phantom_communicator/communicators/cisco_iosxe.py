@@ -21,7 +21,7 @@ class CiscoIosXeCommunicator(BaseCommunicator):
             transport="asyncssh",
             ssh_config_file="config",
         )
-        self._cfg_conn = AsyncScrapliCfg(self._session)
+        self._cfg_conn = AsyncScrapliCfg(self._session, dedicated_connection=True)
 
     async def get_boot_files(self) -> BootFiles:
         boot_files = await self.send_command(GET_BOOT_STATEMENTS_IOSXE)

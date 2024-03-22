@@ -50,12 +50,11 @@ authors = ["niels van hooij <niels.vanhooij@kpn.com>"]
 description = ""
 name = "phantom-communicator"
 readme = "README.md"
-version = "0.2.0"
+version = "0.2.1"
 
 [tool.poetry.dependencies]
 asyncssh = "^2.14.2"
 python = ">=3.11,<4.0"
-scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
 scrapli-community = "^2024.1.30"
 scrapli-replay = "^2024.1.30"
 scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfer_utils.git"}
@@ -64,6 +63,7 @@ genie-libs-parser = {git = "https://github.com/nielsvanhooy/genieparser.git"}
 scrapli = {extras = ["pyats"], version = "^2024.1.30"}
 pyats = "^24.2"
 genie = "^24.2"
+scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.8"

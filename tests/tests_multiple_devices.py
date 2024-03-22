@@ -6,7 +6,7 @@ import uvloop
 from phantom_communicator.communicators.base import Communicator
 
 devices = [
-    ("10.1.1.151", "iosxe"),
+    ("10.1.1.152", "iosxe"),
     ("10.1.1.142", "ios"),
     ("10.1.1.138", "vrp"),
     ("10.1.1.130", "vrp"),

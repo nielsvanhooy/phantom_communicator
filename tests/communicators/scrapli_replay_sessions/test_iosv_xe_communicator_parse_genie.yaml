@@ -42,9 +42,9 @@
         terms of GPL Version 2.0.  For more details, see the\ndocumentation or \"
         License Notice\" file accompanying the IOS-XE software,\nor the applicable
         URL provided on the flyer accompanying the IOS-XE\nsoftware.\n\n\nROM: IOS-XE
-        ROMMON\n\none-gv-2595bk-56 uptime is 14 weeks, 4 days, 2 hours, 38 minutes\n
-        Uptime for this control processor is 14 weeks, 4 days, 2 hours, 40 minutes\n
-        System returned to ROM by Reload Command\nSystem image file is \"bootflash:isr4300-universalk9.16.09.07.SPA.bin\"\
+        ROMMON\n\none-gv-2595bk-56 uptime is 15 weeks, 6 hours, 5 minutes\nUptime
+        for this control processor is 15 weeks, 6 hours, 7 minutes\nSystem returned
+        to ROM by Reload Command\nSystem image file is \"bootflash:isr4300-universalk9.16.09.07.SPA.bin\"\
         \nLast reload reason: Reload Command\n\n\n\nThis product contains cryptographic
         features and is subject to United\nStates and local country laws governing
         import, export, transfer and\nuse. Delivery of Cisco cryptographic products
@@ -98,7 +98,7 @@
       expected_channel_input: show run, expected_channel_input_redacted: false}
     - {channel_output: show run, expected_channel_input: "\n", expected_channel_input_redacted: false}
     - {channel_output: "\nBuilding configuration...\n\n\nCurrent configuration : 12535
-        bytes\n!\n! Last configuration change at 15:46:45 CET Tue Mar 19 2024 by EEM_user\n
+        bytes\n!\n! Last configuration change at 19:22:45 CET Fri Mar 22 2024 by EEM_user\n
         !\nversion 16.9\nno service pad\nservice tcp-keepalives-in\nservice tcp-keepalives-out\n
         service timestamps debug datetime msec localtime show-timezone\nservice timestamps
         log datetime msec localtime show-timezone\nservice password-encryption\nno
