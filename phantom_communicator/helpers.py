@@ -1,6 +1,6 @@
 import importlib
 
-from phantom_communicator.logger import logger
+from phantom_communicator import logger
 
 
 def genie_parse(os: str, command: str, output: str):

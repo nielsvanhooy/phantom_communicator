@@ -5,7 +5,7 @@ from pathlib import Path
 import uvloop
 
 from phantom_communicator.communicators.base import Communicator
-from phantom_communicator.logger import logger
+from phantom_communicator import logger
 
 
 async def get_data(ip):
