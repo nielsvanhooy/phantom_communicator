@@ -4,6 +4,7 @@ from phantom_communicator import logger
 
 
 def genie_parse(os: str, command: str, output: str):
+    logger.propagate = False
     try:
         Device = getattr(importlib.import_module(name=".conf.base", package="genie"), "Device")
         get_parser = getattr(importlib.import_module(name=".libs.parser.utils", package="genie"), "get_parser")
@@ -16,6 +17,7 @@ def genie_parse(os: str, command: str, output: str):
             "1: 'pip install -r requirements-genie.txt'\n"
         )
         logger.warning("%s - %s", title, message)
+        logger.propagate = True
         return []
 
     genie_device = Device("scrapli_device", custom={"abstraction": {"order": ["os"]}}, os=os)
@@ -27,4 +29,5 @@ def genie_parse(os: str, command: str, output: str):
             return genie_parsed_result
     except Exception as exc:  # pylint: disable=W0703
         logger.warning("failed to parse data with genie, genie raised exception: `%s`", exc)
+    logger.propagate = True
     return []
