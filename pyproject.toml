@@ -61,8 +61,8 @@ scrapli-transfer-utils = {git = "https://github.com/nielsvanhooy/scrapli_transfe
 pytest = "^8.1.1"
 genie-libs-parser = {git = "https://github.com/nielsvanhooy/genieparser.git"}
 scrapli = {extras = ["pyats"], version = "^2024.1.30"}
-pyats = "^24.2"
-genie = "^24.2"
+pyats = "==24.3"
+genie = "==24.3"
 scrapli-cfg = {git = "https://github.com/nielsvanhooy/scrapli_cfg.git"}
 
 [tool.poetry.dev-dependencies]
