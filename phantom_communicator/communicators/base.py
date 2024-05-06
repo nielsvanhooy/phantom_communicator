@@ -6,6 +6,9 @@ from asyncssh import ConnectionLost
 from scrapli.exceptions import ScrapliAuthenticationFailed
 from scrapli_transfer_utils import AsyncSrapliTransferUtils
 
+from phantom_communicator.command_blocks.command import Command
+from phantom_communicator.command_blocks.command_block import CommandBlock
+from phantom_communicator.command_blocks.snmp_command import SNMPCommand
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed, CommunicatorNotFound
 from phantom_communicator.helpers import genie_parse
 
@@ -65,6 +68,9 @@ class Communicator:  # pylint: disable=R0902
             genie_output[io["command_input"]] = dict(genie_parse(self.os, io["command_input"], io["command_output"]))
 
         return genie_output
+
+    async def command(self, cmd: [str, Command, SNMPCommand]):
+        raise NotImplementedError
 
     async def send_command(self, command: str):
         raise NotImplementedError
@@ -183,11 +189,28 @@ class BaseCommunicator(Communicator):
     def __init__(self, host, username, password, os):
         super().__init__(host, username, password, os)
 
+    async def command(self, cmd: [str, Command, SNMPCommand]):
+        cmd = getattr(self.command_block, "setup_session")()
+        if isinstance(cmd, list):
+            cmds = [x.command for x in cmd if x is not None]
+            return await self.send_commands(cmds)
+
+        elif isinstance(cmd, str):
+            return await self.send_command(cmd)
+
+        elif isinstance(cmd, SNMPCommand):
+            # implement sending of SNMP commands.
+            pass
+
+        return self.send_command(cmd.command)
+
+        # how to handle Command??
+
     async def send_command(self, command: str):
         """
         :param command: command to be executed on the remote device
         note: that if you send interactive commands: ex.
-        the command: copy run start  on a cisco gives back a prompt:
+        the command: copy run start on a cisco gives back a prompt:
         Destination filename [startup-config]?
         this will hang the send_command. workaround for this is to send to command with a \n seperator
         copy run start\n

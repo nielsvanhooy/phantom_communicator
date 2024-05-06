@@ -9,6 +9,7 @@ from scrapli_community.huawei.vrp.async_driver import (
 )
 from scrapli_community.huawei.vrp.huawei_vrp import DEFAULT_PRIVILEGE_LEVELS as VRP_DEFAULT_PRIVILEGE_LEVELS
 
+from phantom_communicator.command_blocks.command_block import CommandBlock
 from phantom_communicator.communicators.base import BaseCommunicator
 from phantom_communicator.constants import CONFIGSTORE, GET_BOOT_STATEMENTS_HVRP
 
@@ -31,6 +32,7 @@ class HuaweiVrpCommunicator(BaseCommunicator):
             on_close=default_async_on_close,
         )
         self._cfg_conn = AsyncScrapliCfg(self._session)
+        self.command_block = CommandBlock.factory(vendor="huawei", os=self.os)
 
     async def get_boot_files(self):
         """

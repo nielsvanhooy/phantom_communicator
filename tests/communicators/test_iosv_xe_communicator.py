@@ -125,3 +125,15 @@ async def test_iosv_xe_communicator_fake_cfgconn(iosxe_communicator):
     assert version == "i am a fake version"
     assert startup_config == "fake config"
     assert running_config == "fake config"
+
+
+async def test_iosv_xe_command_blocks(iosxe_communicator):
+
+    # stupid assertation just to see if the command is in the blocks
+    cmd = getattr(iosxe_communicator.command_block, "setup_session")()
+    assert cmd.command == "terminal length 0"
+
+
+async def test_iosv_xe_communicator_call_command(iosxe_communicator):
+    cmd = "show_version"
+    lala = await iosxe_communicator.command(cmd)
