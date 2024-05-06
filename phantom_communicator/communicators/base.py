@@ -190,7 +190,7 @@ class BaseCommunicator(Communicator):
         super().__init__(host, username, password, os)
 
     async def command(self, cmd: [str, Command, SNMPCommand]):
-        cmd = getattr(self.command_block, "setup_session")()
+        cmd = getattr(self.command_block, cmd)()
         if isinstance(cmd, list):
             cmds = [x.command for x in cmd if x is not None]
             return await self.send_commands(cmds)
@@ -202,7 +202,7 @@ class BaseCommunicator(Communicator):
             # implement sending of SNMP commands.
             pass
 
-        return self.send_command(cmd.command)
+        return await self.send_command(cmd.command)
 
         # how to handle Command??
 
