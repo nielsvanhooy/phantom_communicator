@@ -189,22 +189,22 @@ class BaseCommunicator(Communicator):
     def __init__(self, host, username, password, os):
         super().__init__(host, username, password, os)
 
-    async def command(self, cmd: [str, Command, SNMPCommand]):
-        cmd = getattr(self.command_block, cmd)()
-        if isinstance(cmd, list):
-            cmds = [x.command for x in cmd if x is not None]
-            return await self.send_commands(cmds)
+    async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True):
+        if find_commands:
+            cmd = getattr(self.command_block, cmd)()
+            return await self.command(cmd, find_commands=False)
 
-        elif isinstance(cmd, str):
+        if isinstance(cmd, list):
+            output = [await self.command(_c, find_commands=False) for _c in cmd]
+            return output
+
+        if isinstance(cmd, str):
             return await self.send_command(cmd)
 
         elif isinstance(cmd, SNMPCommand):
             # implement sending of SNMP commands.
-            pass
-
+            return "not implemented"
         return await self.send_command(cmd.command)
-
-        # how to handle Command??
 
     async def send_command(self, command: str):
         """
