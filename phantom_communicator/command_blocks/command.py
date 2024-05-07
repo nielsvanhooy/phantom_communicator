@@ -7,10 +7,11 @@ class Command:
     forbidden = ["write erase", "reset saved-configuration", "wr era",
                  "delete startup-config", "delete running-config", "configure replace"]
 
-    def __init__(self, command, skip_forbidden=False):
+    def __init__(self, command, timeout=10, skip_forbidden=False):
         self.command = command if skip_forbidden or not any(
             x for x in self.forbidden if x in command.strip().lower()
         ) else ""
+        self.timeout = timeout
 
     def __str__(self) -> str:
         return self.command
@@ -18,6 +19,7 @@ class Command:
     def __dict__(self) -> dict:
         return {
             "command": self.command,
+            "timeout": self.timeout,
         }
 
     def __eq__(self, other):
@@ -28,8 +30,8 @@ class Command:
 
 
 class Parse(Command):
-    def __init__(self, command):
-        super().__init__(command)
+    def __init__(self, command, timeout=10):
+        super().__init__(command, timeout=10)
 
 
 class CommandConstructor:
