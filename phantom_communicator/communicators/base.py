@@ -228,7 +228,7 @@ class BaseCommunicator(Communicator):
 
         payload = await self._session.send_command(command)
         self.channel_io[command] = payload.result
-        return payload
+        return payload.result
 
     async def send_commands(self, commands: list):
         payloads = await self._session.send_commands(commands)
