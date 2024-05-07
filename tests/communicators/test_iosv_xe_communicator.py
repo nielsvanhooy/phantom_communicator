@@ -48,8 +48,7 @@ Tunnel10               10.1.1.242      YES NVRAM  up                    down"""
     assert response.result == expected_result
     assert response.channel_input == cmd
 
-    assert iosxe_communicator.channel_io[0]["command_input"] == cmd
-    assert iosxe_communicator.channel_io[0]["command_output"] == expected_result
+    assert iosxe_communicator.channel_io[cmd] == expected_result
 
 
 @pytest.mark.scrapli_replay
@@ -71,10 +70,10 @@ GigabitEthernet0       unassigned      YES unset  administratively down down""",
         assert data.result in expected_result
 
     for cmd in conn.channel_io:
-        assert cmd["command_input"] in cmds
+        assert cmd in cmds
 
-    for cmd in conn.channel_io:
-        assert cmd["command_output"] in expected_result
+    for cmd, cmd_output in conn.channel_io.items():
+        assert cmd_output in expected_result
 
 
 @pytest.mark.scrapli_replay

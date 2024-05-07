@@ -31,7 +31,7 @@ class Communicator:  # pylint: disable=R0902
         self._cfg_conn = None
 
         # channel_io is a ref to input commands, and the corresponding output
-        self.channel_io = []
+        self.channel_io = {}
         self.genie_external = False
 
     @classmethod
@@ -63,8 +63,8 @@ class Communicator:  # pylint: disable=R0902
         """
         genie_output = {}
 
-        for io in self.channel_io:
-            genie_output[io["command_input"]] = dict(genie_parse(self.os, io["command_input"], io["command_output"]))
+        for command_input, command_output in self.channel_io.items():
+            genie_output[command_input] = dict(genie_parse(self.os, command_input, command_output))
 
         return genie_output
 
@@ -192,7 +192,7 @@ class BaseCommunicator(Communicator):
         super().__init__(host, username, password, os)
         self.command_block = None
 
-    async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True):
+    async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True, use_cache=False):
         if find_commands:
             cmd = getattr(self.command_block, cmd)()
             return await self.command(cmd, find_commands=False)
@@ -202,14 +202,14 @@ class BaseCommunicator(Communicator):
             return output
 
         if isinstance(cmd, str):
-            return await self.send_command(cmd)
+            return await self.send_command(cmd, use_cache=use_cache)
 
         elif isinstance(cmd, SNMPCommand):
             # implement sending of SNMP commands.
             return "not implemented"
-        return await self.send_command(cmd.command)
+        return await self.send_command(cmd.command, use_cache=False)
 
-    async def send_command(self, command: str):
+    async def send_command(self, command: str, use_cache=False):
         """
         :param command: command to be executed on the remote device
         note: that if you send interactive commands: ex.
@@ -221,14 +221,19 @@ class BaseCommunicator(Communicator):
         the nicer method is to use the fuction: send_interactive_command which accepts multiple arguments
         :return:
         """
+        if use_cache:
+            cached_output = self.channel_io.get(command)
+            if cached_output is not None:
+                return cached_output
+
         payload = await self._session.send_command(command)
-        self.channel_io.append({"command_input": command, "command_output": payload.result})
+        self.channel_io[command] = payload.result
         return payload
 
     async def send_commands(self, commands: list):
         payloads = await self._session.send_commands(commands)
         for payload in payloads.data:
-            self.channel_io.append({"command_input": payload.channel_input, "command_output": payload.result})
+            self.channel_io[payload.channel_input] = payload.result
         return payloads
 
     async def send_interactive_command(self, commands: Union[List[Tuple[str, str]], List[Tuple[str, str, bool]]]):
