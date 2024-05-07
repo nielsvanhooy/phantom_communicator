@@ -7,7 +7,6 @@ from scrapli.exceptions import ScrapliAuthenticationFailed
 from scrapli_transfer_utils import AsyncSrapliTransferUtils
 
 from phantom_communicator.command_blocks.command import Command
-from phantom_communicator.command_blocks.command_block import CommandBlock
 from phantom_communicator.command_blocks.snmp_command import SNMPCommand
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed, CommunicatorNotFound
 from phantom_communicator.helpers import genie_parse
@@ -68,6 +67,9 @@ class Communicator:  # pylint: disable=R0902
             genie_output[io["command_input"]] = dict(genie_parse(self.os, io["command_input"], io["command_output"]))
 
         return genie_output
+
+    async def get_command_cache(self):
+        return self.channel_io
 
     async def command(self, cmd: [str, Command, SNMPCommand]):
         raise NotImplementedError
@@ -188,6 +190,7 @@ class BaseCommunicator(Communicator):
 
     def __init__(self, host, username, password, os):
         super().__init__(host, username, password, os)
+        self.command_block = None
 
     async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True):
         if find_commands:
