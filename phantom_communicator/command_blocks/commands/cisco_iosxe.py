@@ -1,5 +1,6 @@
 from phantom_communicator.command_blocks.command import Command, CommandConstructor
 from phantom_communicator.command_blocks.decorators import command, return_config
+from phantom_communicator.command_blocks.genie_command import GenieCommand
 from phantom_communicator.command_blocks.snmp_command import SNMPCommand
 from phantom_communicator.command_blocks import constants as commands
 
@@ -272,3 +273,8 @@ class ShowControllerCommand(CommandConstructor):
         dsl = self.get_controller(cpe)[0]
         interface = str("VDSL " + dsl.product_configuration_wan.port_number)
         return Command(f"show controller {interface}")
+
+
+@command(name=commands.SHOW_DHCP, vendor=commands.CISCO, os="iosxe")
+def show_run_dhcp(*args) -> GenieCommand:
+    return GenieCommand("show running-config", "show running-config dhcp")
