@@ -7,6 +7,7 @@ from scrapli.exceptions import ScrapliAuthenticationFailed
 from scrapli_transfer_utils import AsyncSrapliTransferUtils
 
 from phantom_communicator.command_blocks.command import Command
+from phantom_communicator.command_blocks.genie_command import GenieCommand
 from phantom_communicator.command_blocks.snmp_command import SNMPCommand
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed, CommunicatorNotFound
 from phantom_communicator.helpers import genie_parse
@@ -192,13 +193,13 @@ class BaseCommunicator(Communicator):
         super().__init__(host, username, password, os)
         self.command_block = None
 
-    async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True, use_cache=False):
+    async def command(self, cmd: [str, Command, SNMPCommand], find_commands=True, use_cache=False, genie_return=False):
         if find_commands:
             cmd = getattr(self.command_block, cmd)()
-            return await self.command(cmd, find_commands=False)
+            return await self.command(cmd, find_commands=False, use_cache=use_cache, genie_return=genie_return)
 
         if isinstance(cmd, list):
-            output = [await self.command(_c, find_commands=False) for _c in cmd]
+            output = [await self.command(_c, find_commands=False, use_cache=use_cache, genie_return=genie_return) for _c in cmd]
             return output
 
         if isinstance(cmd, str):
@@ -207,6 +208,12 @@ class BaseCommunicator(Communicator):
         elif isinstance(cmd, SNMPCommand):
             # implement sending of SNMP commands.
             return "not implemented"
+
+        elif isinstance(cmd, GenieCommand):
+            output = await self.send_command(cmd.real_command, use_cache=use_cache)
+            if genie_return:
+                return dict(genie_parse(self.os, cmd.genie_command, output))
+
         return await self.send_command(cmd.command, use_cache=False)
 
     async def send_command(self, command: str, use_cache=False):
