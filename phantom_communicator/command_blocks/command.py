@@ -1,16 +1,25 @@
+from phantom_communicator.exceptions import SNMPCommandOIDMissingError, SNMPCommandCommandNameMissingError
+
+
 class Command:
     """
     Direct command to be executed on the CPE
     """
 
     __slots__ = ["command", "timeout", "expected_prompt", "error_condition"]
-    forbidden = ["write erase", "reset saved-configuration", "wr era",
-                 "delete startup-config", "delete running-config", "configure replace"]
+    forbidden = [
+        "write erase",
+        "reset saved-configuration",
+        "wr era",
+        "delete startup-config",
+        "delete running-config",
+        "configure replace",
+    ]
 
     def __init__(self, command, timeout=10, skip_forbidden=False):
-        self.command = command if skip_forbidden or not any(
-            x for x in self.forbidden if x in command.strip().lower()
-        ) else ""
+        self.command = (
+            command if skip_forbidden or not any(x for x in self.forbidden if x in command.strip().lower()) else ""
+        )
         self.timeout = timeout
 
     def __str__(self) -> str:
@@ -29,9 +38,9 @@ class Command:
         return f"<Command {self.__dict__()}>"
 
 
-class Parse(Command):
-    def __init__(self, command, timeout=10):
-        super().__init__(command, timeout=10)
+class ParseCommand(Command):
+    def __init__(self, parse_command):
+        self.parser = parse_command
 
 
 class CommandConstructor:
@@ -49,3 +58,36 @@ class CommandConstructor:
 
     def get_commands(self, *args, **kwargs) -> list[Command]:
         raise NotImplementedError
+
+
+class SNMPCommand:
+    command = None
+    agent = None
+    oid = None
+    community_string = None
+    version = None
+    valid_mib_prefixes: list | None = None
+    type: None
+
+    def __init__(
+        self,
+        command_name,
+        oid=None,
+        agent=None,
+        community_string=None,
+        version=None,
+        valid_mib_prefixes=None,
+        type="get",
+    ):
+        if not command_name:
+            raise SNMPCommandCommandNameMissingError
+        if not oid:
+            raise SNMPCommandOIDMissingError("oid is required for initializing an SNMPCommand")
+
+        self.command = command_name
+        self.oid = oid
+        self.agent = agent
+        self.community_string = community_string
+        self.version = version
+        self.valid_mib_prefixes = valid_mib_prefixes
+        self.type = type

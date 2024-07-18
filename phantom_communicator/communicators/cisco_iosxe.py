@@ -4,7 +4,7 @@ from collections import namedtuple
 from scrapli.driver.core import AsyncIOSXEDriver
 from scrapli_cfg import AsyncScrapliCfg
 
-from phantom_communicator.command_blocks.command_block import CommandBlock
+from phantom_communicator.command_blocks.command_and_parse import CommandParser
 from phantom_communicator.communicators.base import BaseCommunicator
 from phantom_communicator.constants import CONFIGSTORE, GET_BOOT_STATEMENTS_IOSXE
 
@@ -23,7 +23,10 @@ class CiscoIosXeCommunicator(BaseCommunicator):
             ssh_config_file="config",
         )
         self._cfg_conn = AsyncScrapliCfg(self._session, dedicated_connection=True)
-        self.command_block = CommandBlock.factory(vendor="cisco", os=self.os)
+        self.command_block = CommandParser.factory(vendor="cisco", os=self.os)
+
+    def __repr__(self) -> str:
+        return f"CiscoIosXeCommunicator({self.host=}"
 
     async def get_boot_files(self) -> BootFiles:
         boot_files = await self.send_command(GET_BOOT_STATEMENTS_IOSXE)

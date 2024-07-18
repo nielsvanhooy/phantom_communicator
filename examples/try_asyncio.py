@@ -23,7 +23,6 @@ async def get_data(ip):
         version = await conn.get_version()
         startup_config = await conn.get_running_config()
         boot_files = await conn.get_boot_files()
-        genie_output = await conn.genie_parse_output()
 
         response_two = await conn.send_interactive_command(
             [("copy run start", "Destination filename [startup-config]?", False), ("\n", "[OK]", False)]

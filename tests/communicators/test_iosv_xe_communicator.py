@@ -83,17 +83,13 @@ async def test_iosv_xe_communicator_parse_genie(iosxe_communicator, caplog):
 
     async with iosxe_communicator as conn:
         response = await conn.send_commands(cmds)
-        genie_output = await conn.genie_parse_output()
 
-    print(genie_output['show ip route static'])
     lala = "loeloe"
 
 
 async def test_iosv_xe_communicator_cant_connect():
     with pytest.raises(CommunicatorAuthenticationFailed):
-        communicator = Communicator.factory(
-            host="10.1.1.200", username="test008", password="test008", os="iosxe"
-        )
+        communicator = Communicator.factory(host="10.1.1.200", username="test008", password="test008", os="iosxe")
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
             conn.get_version()
@@ -101,12 +97,11 @@ async def test_iosv_xe_communicator_cant_connect():
 
 async def test_iosv_xe_communicator_auth_failed():
     with pytest.raises(CommunicatorAuthenticationFailed):
-        communicator = Communicator.factory(
-            host="10.1.1.156", username="test008", password="test008", os="iosxe"
-        )
+        communicator = Communicator.factory(host="10.1.1.156", username="test008", password="test008", os="iosxe")
         communicator._cfg_conn = FakeCfgConn()
         async with communicator as conn:
             conn.get_version()
+
 
 ### test _cfg_conn calling against he fake mock
 

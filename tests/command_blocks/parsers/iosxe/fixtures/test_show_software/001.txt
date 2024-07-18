@@ -1,0 +1,4 @@
+{
+    "cmd_type": "snmp",
+    "result": "flash:c800-universalk9-mz.SPA.158-3.M9.bin"
+}
