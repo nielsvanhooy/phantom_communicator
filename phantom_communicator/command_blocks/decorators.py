@@ -1,27 +1,33 @@
 from functools import wraps
 
 from phantom_communicator.command_blocks.command import Command
-from phantom_communicator.command_blocks.command_block import CommandBlock
+from phantom_communicator.command_blocks.command_and_parse import CommandParser
 from phantom_communicator.command_blocks.helpers import commands_list
 
 
-class command:
-    def __init__(self, name=None, vendor=None, model=None, os=None):
+class command_or_parse:
+    def __init__(self, name=None, vendor=None, model=None, os=None, type="command"):
         self.name = name
         self.vendor = vendor
-        self.model = [model] if type(model) in [str, type(None)] else model
+        self.model = [model] if isinstance(model, str) or model is None else model
         self.os = os
+        self.type = type
 
     def register(self, model, method):
         model = model.upper() if model else None
-        CommandBlock.register_command(self.name, self.vendor, model, self.os, method)
+        if self.type == "command":
+            CommandParser.register_command(self.name, self.vendor, model, self.os, method)
+        elif self.type == "parse_command":
+            CommandParser.register_parse_command(self.name, self.vendor, model, self.os, method)
 
     def __call__(self, method):
         for model in self.model:
             self.register(model, method)
+
         @wraps(method)
         def wrapper(*args, **kwargs):
             return method(*args, **kwargs)
+
         return wrapper
 
 
@@ -34,6 +40,7 @@ def return_config(vendor=None, end=False, custom=False):
     :param custom:
     :return:
     """
+
     def decorator(f):
         def wrapper(*args, **kwargs):
             result = f(*args, **kwargs)
