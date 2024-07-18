@@ -1,5 +1,5 @@
 import asyncio
-from collections import namedtuple, defaultdict
+from collections import defaultdict, namedtuple
 from typing import List, Literal, Optional, Tuple, Union
 
 from asyncssh import ConnectionLost
@@ -11,9 +11,9 @@ from phantom_communicator.command_blocks.command_result import CommandResult
 from phantom_communicator.command_blocks.executors import CommandExecutor
 from phantom_communicator.command_blocks.helpers import is_prefix_in_list
 from phantom_communicator.exceptions import (
+    CommandNotImplementedError,
     CommunicatorAuthenticationFailed,
     CommunicatorNotFound,
-    CommandNotImplementedError,
 )
 from phantom_communicator.file_transfer import FileTransferManager
 

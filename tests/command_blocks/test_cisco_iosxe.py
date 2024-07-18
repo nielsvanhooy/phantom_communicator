@@ -19,10 +19,10 @@ async def test_show_ver():
     async with communicator as conn:
         data = await conn.execute_and_parse_commands(
             [
-                # "show_config_dhcp",
+                "show_config_dhcp",
                 "show_version",
-                # "show_software",
-                # "show_inventory",
+                "show_software",
+                "show_inventory",
             ],
             use_cache=True,
         )

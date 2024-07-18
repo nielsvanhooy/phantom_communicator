@@ -35,7 +35,7 @@ run_tests:
 	poetry run pytest -o addopts='--cov=bifrost -p no:cacheprovider -vv  --doctest-modules --doctest-glob=*.md' .
 
 
-lint: create_mypy_cache toml_sort isort black flake8 pylint mypy
+lint: create_mypy_cache isort black flake8 pylint mypy
 
 audit: audit_dependencies bandit
 

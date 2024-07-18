@@ -1,7 +1,7 @@
+import re
 from typing import Union
 
 from .command import Command
-import re
 
 
 def commands_list(commands) -> Union[list[Command], list]:

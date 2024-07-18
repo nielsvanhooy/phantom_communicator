@@ -1,6 +1,5 @@
-from phantom_communicator.command_blocks.command import Command, CommandConstructor, SNMPCommand
-from phantom_communicator.command_blocks.decorators import command_or_parse, return_config
 from phantom_communicator.command_blocks import constants as commands
+from phantom_communicator.command_blocks.decorators import command_or_parse
 from phantom_communicator.command_blocks.ip_utils import check_if_ip_in_network
 
 

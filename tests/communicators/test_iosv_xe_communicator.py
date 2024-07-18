@@ -2,10 +2,8 @@ import pytest
 
 from phantom_communicator.communicators.base import Communicator
 from phantom_communicator.communicators.cisco_iosxe import CiscoIosXeCommunicator
-
 from phantom_communicator.exceptions import CommunicatorAuthenticationFailed
 from tests.fake_cfg_conn import FakeCfgConn
-
 
 # @pytest.mark.scrapli_replay
 # async def __test_iosv_xe_communicator(monkeypatch):

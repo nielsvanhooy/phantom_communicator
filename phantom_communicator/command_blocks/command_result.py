@@ -1,11 +1,9 @@
+from dataclasses import dataclass, field
 from typing import Optional, Union
 
 from phantom_communicator.exceptions import CommandNotImplementedError
 
-
 # dataclass test
-
-from dataclasses import dataclass, field
 
 
 @dataclass

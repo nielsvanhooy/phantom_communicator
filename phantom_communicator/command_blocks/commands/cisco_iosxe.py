@@ -1,6 +1,6 @@
+from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.command import Command, CommandConstructor, SNMPCommand
 from phantom_communicator.command_blocks.decorators import command_or_parse, return_config
-from phantom_communicator.command_blocks import constants as commands
 
 
 @command_or_parse(name=commands.ENABLE, vendor=commands.CISCO, os="iosxe")

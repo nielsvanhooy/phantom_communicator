@@ -1,4 +1,4 @@
-from phantom_communicator.exceptions import SNMPCommandOIDMissingError, SNMPCommandCommandNameMissingError
+from phantom_communicator.exceptions import SNMPCommandCommandNameMissingError, SNMPCommandOIDMissingError
 
 
 class Command:

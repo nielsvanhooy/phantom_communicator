@@ -1,4 +1,5 @@
 import pytest
+
 from phantom_communicator.communicators.base import Communicator
 from tests.fake_cfg_conn import FakeCfgConn
 

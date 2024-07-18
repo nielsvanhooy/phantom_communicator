@@ -1,8 +1,10 @@
-import pytest
-import re
 import importlib.util
-from phantom_communicator.command_blocks.command_result import CommandResult
+import re
 from pathlib import Path
+
+import pytest
+
+from phantom_communicator.command_blocks.command_result import CommandResult
 
 # Define a mapping between test file base names and parsing function names
 # if fixture files ex: 001.txt (has just text), 002.txt (has python object) mixed type of input = use "python"
@@ -11,7 +13,7 @@ parsing_function_mapping = {
     "show_config_dhcp": ("iosxe", "parse_show_run_dhcp", "str"),
     "show_inventory": ("iosxe", "parse_show_inventory", "python"),
     "show_software": ("iosxe", "parse_show_software", "python"),
-    "show_version": ("iosxe", "parse_show_ver", "str")
+    "show_version": ("iosxe", "parse_show_ver", "str"),
     # Add more mappings as needed
 }
 
@@ -56,7 +58,7 @@ def call_parsing_function(function_name, os, command_results, test_file_base_nam
 
 
 @pytest.mark.parametrize("fixture_file", discover_fixture_files())
-def test_parse_dhcp_config(fixture_file):
+def test_iosxe_parsers(fixture_file):
     # Convert fixture_file string to Path object for easier manipulation
     fixture_path = Path(fixture_file)
     # Dynamically extract the directory name and prune the prefix

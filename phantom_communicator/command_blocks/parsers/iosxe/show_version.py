@@ -1,11 +1,10 @@
+import re
 from typing import Any
 
 from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.command_result import CommandResult
 from phantom_communicator.command_blocks.decorators import command_or_parse
-import re
-
-from phantom_communicator.command_blocks.helpers import get_match, generate_dict
+from phantom_communicator.command_blocks.helpers import get_match
 
 
 @command_or_parse(name=commands.SHOW_VERSION, vendor=commands.CISCO, os="iosxe", type="parse_command")
