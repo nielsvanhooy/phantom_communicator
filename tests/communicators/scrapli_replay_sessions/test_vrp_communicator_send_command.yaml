@@ -21,13 +21,10 @@
         z and quit to logout.                           *\n*                     \
         \                                       *\n*                             \
         \                               *\n**************************************************************\n\
-        \n  -----------------------------------------------------------------------------\
-        \     \n  User last login information:     \n  -----------------------------------------------------------------------------\n\
-        \  Access Type: SSH      \n  IP-Address : 192.168.28.197     \n  Time    \
-        \   : 2024-03-13 19:33:21+01:00     \n  -----------------------------------------------------------------------------\n\
-        <one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: screen-length
-        0 temporary, expected_channel_input_redacted: false}
-    - {channel_output: screen-length 0 temporary, expected_channel_input: "\n", expected_channel_input_redacted: false}
+        \n<one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary,
+      expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
     - {channel_output: "\nInfo: The configuration takes effect on the current user
         terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
         interface brief, expected_channel_input_redacted: false}
@@ -51,9 +48,7 @@
         \            up    up(s)        --     --          0          0\nNULL0   \
         \                    up    up(s)        --     --          0          0\n\
         Tunnel0/0/10                up    up           --     --          0      \
-        \    0\nVlanif1                     down  down         --     --         \
-        \ 0          0\nVlanif10                    down  down         --     -- \
-        \         0          0\n<one-gv-2595bk-03>", expected_channel_input: "\n",
-      expected_channel_input_redacted: false}
+        \    0\nVlanif1                     *down down         --     --         \
+        \ 0          0\n<one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
     - {channel_output: "\n<one-gv-2595bk-03>", expected_channel_input: exit, expected_channel_input_redacted: false}
     - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}

@@ -303,7 +303,7 @@ class BaseCommunicator(Communicator):
     #     # Fallback for unrecognized command types
     #     return "Unrecognized command type"
 
-    async def send_command(self, command: str, original_cmd_name=None, use_cache=False):
+    async def send_command(self, command: str, original_cmd_name=None, use_cache=True):
         """
         Sends a command to the remote device and returns the result.
 

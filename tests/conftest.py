@@ -7,7 +7,7 @@ from tests.fake_cfg_conn import FakeCfgConn
 @pytest.fixture(name="iosxe_communicator")
 def fx_iosxe_communicator():
     """Unstructured cpe representations."""
-    communicator = Communicator.factory(host="10.1.1.156", username="lagen008", password="lagen008", os="iosxe")
+    communicator = Communicator.factory(host="10.1.1.156", username="test008", password="lagen008", os="iosxe")
     communicator._cfg_conn = FakeCfgConn()
     return communicator
 
@@ -15,7 +15,7 @@ def fx_iosxe_communicator():
 @pytest.fixture(name="vrp_communicator")
 def fx_vrp_communicator():
     """Unstructured cpe representations."""
-    communicator = Communicator.factory(host="10.1.1.131", username="lagen008", password="lagen008", os="vrp")
+    communicator = Communicator.factory(host="10.1.1.131", username="test008", password="lagen008", os="vrp")
     communicator._cfg_conn = FakeCfgConn()
     return communicator
 

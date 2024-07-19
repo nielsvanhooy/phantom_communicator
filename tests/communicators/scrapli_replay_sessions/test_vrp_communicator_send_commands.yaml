@@ -24,10 +24,10 @@
         \n  -----------------------------------------------------------------------------\
         \     \n  User last login information:     \n  -----------------------------------------------------------------------------\n\
         \  Access Type: SSH      \n  IP-Address : 192.168.28.197     \n  Time    \
-        \   : 2024-03-19 13:14:33+01:00     \n  -----------------------------------------------------------------------------\n\
-        <one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary, expected_channel_input_redacted: false}
-    - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
-      expected_channel_input_redacted: false}
+        \   : 2024-07-19 15:14:45+02:00 DST     \n  -----------------------------------------------------------------------------\n\
+        <one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: screen-length
+        0 temporary, expected_channel_input_redacted: false}
+    - {channel_output: screen-length 0 temporary, expected_channel_input: "\n", expected_channel_input_redacted: false}
     - {channel_output: "\nInfo: The configuration takes effect on the current user
         terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
         interface GigabitEthernet 0/0/0 | include Description, expected_channel_input_redacted: false}

@@ -51,8 +51,7 @@ GigabitEthernet0/0/10(v)    up    down         0%     0%          0          0
 LoopBack0                   up    up(s)        --     --          0          0
 NULL0                       up    up(s)        --     --          0          0
 Tunnel0/0/10                up    up           --     --          0          0
-Vlanif1                     down  down         --     --          0          0
-Vlanif10                    down  down         --     --          0          0"""
+Vlanif1                     *down down         --     --          0          0"""
 
     cmd = "display interface brief"
 
@@ -60,10 +59,9 @@ Vlanif10                    down  down         --     --          0          0""
         response = await conn.send_command(cmd)
 
     assert response.result == expected_result
-    assert response.channel_input == cmd
+    assert response.command_name == cmd
 
-    assert vrp_communicator.channel_io[0]["command_input"] == cmd
-    assert vrp_communicator.channel_io[0]["command_output"] == expected_result
+    assert vrp_communicator.channel_io[cmd]['result'] == expected_result
 
 
 @pytest.mark.scrapli_replay

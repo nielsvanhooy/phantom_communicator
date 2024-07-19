@@ -44,9 +44,9 @@ Tunnel10               10.1.1.242      YES NVRAM  up                    down"""
         response = await conn.send_command(cmd)
 
     assert response.result == expected_result
-    assert response.channel_input == cmd
+    assert response.command_name == cmd
 
-    assert iosxe_communicator.channel_io[cmd] == expected_result
+    assert iosxe_communicator.channel_io[cmd]['result'] == expected_result
 
 
 @pytest.mark.scrapli_replay
@@ -122,10 +122,6 @@ async def test_iosv_xe_communicator_fake_cfgconn(iosxe_communicator):
 async def test_iosv_xe_command_blocks(iosxe_communicator):
 
     # stupid assertation just to see if the command is in the blocks
-    cmd = getattr(iosxe_communicator.command_block, "setup_session")()
+    cmd = getattr(iosxe_communicator.command_block, "setup_session")()()
     assert cmd.command == "terminal length 0"
 
-
-async def test_iosv_xe_communicator_call_command(iosxe_communicator):
-    cmd = "show_version"
-    lala = await iosxe_communicator.command(cmd)
