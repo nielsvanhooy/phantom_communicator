@@ -50,3 +50,18 @@ def is_prefix_in_list(oid, prefix_list):
         if oid.startswith(prefix):
             return True
     return False
+
+
+def convert_to_epoch(uptime_dict: dict[str, int]) -> int:
+    # Conversion factors for each unit to seconds
+    conversion_factors = {
+        "years": 31536000,
+        "weeks": 604800,
+        "days": 86400,
+        "hours": 3600,
+        "minutes": 60,
+        "seconds": 1,
+    }
+
+    # Calculate total epoch time by summing the products of values and conversion factors
+    return sum(uptime_dict.get(unit, 0) * factor for unit, factor in conversion_factors.items())

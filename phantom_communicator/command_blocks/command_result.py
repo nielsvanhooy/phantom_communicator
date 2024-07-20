@@ -27,7 +27,7 @@ class CommandResult:
             self.parsed_output = "Parser function not implemented"
 
     def __repr__(self) -> str:
-        return f"CommandResult(command_name={self.command_name!r}, cmd_type={self.cmd_type!r})"
+        return f"CommandResult(command_name={self.command_name!r}, cmd_type={self.cmd_type!r}, command_or_parse_name={self.command_or_parse_name!r}, parsed_output={self.parsed_output!r}, result={self.result!r}, structured_data={self.structured_data!r})"
 
 
 #
