@@ -14,6 +14,8 @@ parsing_function_mapping = {
     "show_inventory": ("iosxe", "parse_show_inventory", "python"),
     "show_software": ("iosxe", "parse_show_software", "python"),
     "show_version": ("iosxe", "parse_show_ver", "str"),
+    "show_license_info": ("iosxe", "parse_show_license_info", "str"),
+    "show_uptime": ("iosxe", "parse_show_uptime", "str"),
     # Add more mappings as needed
 }
 

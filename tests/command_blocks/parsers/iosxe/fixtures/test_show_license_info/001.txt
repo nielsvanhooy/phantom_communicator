@@ -1,0 +1,21 @@
+Index 1 Feature: advipservices
+	Period left: Life time
+	License Type: Permanent
+	License State: Active, In Use
+	License Count: Non-Counted
+	License Priority: Medium
+Index 2 Feature: advsecurity
+Index 3 Feature: ios-ips-update
+	Period left: Not Activated
+	Period Used: 0  minute  0  second
+	License Type: EvalRightToUse
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 4 Feature: MEM-8XX-512U1GB
+	Period left: Not Activated
+	Period Used: 0  minute  0  second
+	License Type: EvalRightToUse
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
