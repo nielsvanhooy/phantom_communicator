@@ -3,8 +3,7 @@ from typing import Any
 
 from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.decorators import command_or_parse
-from phantom_communicator.command_blocks.helpers import convert_to_epoch, get_match
-from phantom_communicator.command_blocks.parsers.iosxe.show_version import parse_show_ver
+from phantom_communicator.command_blocks.helpers import convert_to_epoch
 
 
 @command_or_parse(name=commands.SHOW_UPTIME, vendor=commands.CISCO, os="iosxe", type="parse_command")

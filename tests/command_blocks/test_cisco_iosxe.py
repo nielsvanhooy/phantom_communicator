@@ -24,6 +24,7 @@ async def test_show_ver():
                 "show_software",
                 "show_inventory",
                 "show_uptime",
+                "show_license_info",
             ],
             use_cache=True,
         )
