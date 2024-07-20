@@ -14,7 +14,7 @@ def parse_show_license_info(command_results) -> list:
     # so that i have feature and state of the feature in seperate lists
     # below regex for feature is after the split
     license_feature = r"\d Feature: (.*)"
-    license_state = r"License State(.*)"
+    license_state = r"License State:\s+(.*)"
 
     feature_state_list = []
     for index in license_list:
