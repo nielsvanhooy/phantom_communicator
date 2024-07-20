@@ -16,6 +16,7 @@ parsing_function_mapping = {
     "show_version": ("iosxe", "parse_show_ver", "str"),
     "show_license_info": ("iosxe", "parse_show_license_info", "str"),
     "show_uptime": ("iosxe", "parse_show_uptime", "str"),
+    "show_ssh_info": ("iosxe", "parse_show_ssh_info", "str"),
     # Add more mappings as needed
 }
 

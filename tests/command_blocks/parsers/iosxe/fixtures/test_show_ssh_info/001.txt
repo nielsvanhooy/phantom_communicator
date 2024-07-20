@@ -1,0 +1,19 @@
+SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa
+Hostkey Algorithms:x509v3-ssh-rsa,ssh-rsa
+Encryption Algorithms:aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256,hmac-sha2-512,hmac-sha1,hmac-sha1-96
+KEX Algorithms:diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): nvh-ztm-2626tr-01
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCeikbRbY1TG/m8tEQqnyXoAYdQ8G579TW26twtxeE+
+xGtJwQtfXFU9VkE7AhxtL34+gt7h1Pw2h90gM192o/+puApnD7oTtpxa4N/EGEr/bGCHJmMOlqTL5mDy
+3xUytgsRqcnVs7tr0tTsOKbJ9yXNW5M3ZAB7hkYlZfZOSKxO2MUkLxuWyrPGRgc7tO9UpbnfRU1/+jwD
+CKiyd3yoQFOEZoAtEFQMXbLAwEi4H+MXnCrZcdCTZWUVGPJdL6F25m3yFO0X4Z00m18MnFSrOC7LVE4D
+zvDJf1Ld52fUfW2HRS2Y6y/RqFeCtLW++nWWxPqkjhYJLxQDUCZyXjnaN77xnxM/JuAiti/Sqe8dIikC
+CvCNMIpZIf7+DebgT/gCGDQh8DXlC1FjQln5GGvYhcnsmV1+LM17ihBznVt6LFF27wdfyHPiEyMSuFH0
+eraP/M2aI0c+qxaQ7VRqF9K2rgjRU/czaTEj3mK+SFc+RYGCsu9dNGvCRwi5K/CrdjNQ4sM7SEZeygcS
+xmp6Qup5IxhiIDPg1rzFNef3LhsfJoxIB0eQbJupO11PHwwk1233vSlatBcaWyalK3IynxK0o9F4jd/p
+uai+3xBT0KhUP9shYldcfFcy6Z2NdA4OIH/QEcKkaS/0W5kD6LpzALtYFJOxOUeo8uU3YVl5y7+VHC3M

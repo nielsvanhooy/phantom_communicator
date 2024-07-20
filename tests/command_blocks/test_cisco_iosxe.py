@@ -25,6 +25,7 @@ async def test_show_ver():
                 "show_inventory",
                 "show_uptime",
                 "show_license_info",
+                "show_ssh_info",
             ],
             use_cache=True,
         )
