@@ -25,17 +25,17 @@ class Command:
     def __str__(self) -> str:
         return self.command
 
-    def __dict__(self) -> dict:
-        return {
-            "command": self.command,
-            "timeout": self.timeout,
-        }
+    # def __dict__(self) -> dict:
+    #     return {
+    #         "command": self.command,
+    #         "timeout": self.timeout,
+    #     }
+    #
+    # def __eq__(self, other):
+    #     return self.__dict__() == other.__dict__()
 
-    def __eq__(self, other):
-        return self.__dict__() == other.__dict__()
-
-    def __repr__(self) -> str:
-        return f"<Command {self.__dict__()}>"
+    # def __repr__(self) -> str:
+    #     return f"<Command {self.__dict__()}>"
 
 
 class ParseCommand(Command):
@@ -69,7 +69,7 @@ class SNMPCommand:
     valid_mib_prefixes: list | None = None
     type: None
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         command_name,
         oid=None,
@@ -77,7 +77,7 @@ class SNMPCommand:
         community_string=None,
         version=None,
         valid_mib_prefixes=None,
-        type="get",
+        type="get",  # pylint: redefined-builtin
     ):
         if not command_name:
             raise SNMPCommandCommandNameMissingError

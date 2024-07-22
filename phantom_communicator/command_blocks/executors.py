@@ -6,7 +6,7 @@ class CommandExecutor:
         self.communicator = communicator
         self.command_parser = command_parser
 
-    async def execute_command(self, cmd, cmd_obj, original_cmd_name, use_cache=True) -> list[CommandResult]:
+    async def execute_command(self, cmd_obj, original_cmd_name, use_cache=True) -> list[CommandResult]:
         output = await self.communicator.command(cmd_obj, use_cache=use_cache, original_cmd_name=original_cmd_name)
         if isinstance(output, list):
             [result.apply_parser(self.command_parser) for result in output]

@@ -1,0 +1,5 @@
+{
+    "cmd_type": "str",
+    "result": '80637952 bytes available (180060160 bytes used)',
+    "command_name": 'sh flash: | i bytes',
+}

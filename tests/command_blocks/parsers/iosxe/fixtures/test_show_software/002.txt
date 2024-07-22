@@ -1,4 +1,6 @@
-Cisco IOS Software, C800 Software (C800-UNIVERSALK9-M), Version 15.8(3)M9, RELEASE SOFTWARE (fc1)
+{
+    "cmd_type": "str",
+    "result": """Cisco IOS Software, C800 Software (C800-UNIVERSALK9-M), Version 15.8(3)M9, RELEASE SOFTWARE (fc1)
 Technical Support: http://www.cisco.com/techsupport
 Copyright (c) 1986-2022 by Cisco Systems, Inc.
 Compiled Thu 08-Sep-22 14:16 by mcpre
@@ -57,4 +59,7 @@ License Information for 'c800'
     Next reboot license Level: advipservices
 
 
-Configuration register is 0x2102
+Configuration register is 0x2102""",
+}
+
+

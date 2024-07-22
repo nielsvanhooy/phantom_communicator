@@ -1,0 +1,70 @@
+Controller VDSL 0/3/0 is UP
+
+Daemon Status:		UP
+
+                    XTU-R (DS)		XTU-C (US)
+Chip Vendor ID:		'BDCM'			 'BDCM'
+Chip Vendor Specific:   0x0000			 0xA495
+Chip Vendor Country:    0xB500			 0xB500
+Modem Vendor ID:	'CSCO'			 'BDCM'
+Modem Vendor Specific:  0x4602			 0xA495
+Modem Vendor Country:   0xB500			 0xB500
+Serial Number Near:     FGL221692VJ C1113-8P 16.9.2
+Serial Number Far:
+Modem Version Near:     16.9.2
+Modem Version Far:      0xa495
+
+Modem Status:		TC Sync (Showtime!)
+DSL Config Mode:	AUTO
+Trained Mode:		G.992.5 (ADSL2+) Annex A
+
+TC Mode:		ATM
+Selftest Result:	0x00
+DELT configuration:	disabled
+DELT state:		not running
+
+Failed full inits:	0
+Short inits:		0
+Failed short inits:	0
+
+Modem FW  Version:	4.16L.05
+Modem PHY Version:	A2pvfbH043j.d26u
+Modem PHY Source:	System
+
+Line 0:
+
+                XTU-R (DS)		XTU-C (US)
+Trellis:		 ON			 ON
+SRA: 			 enabled		 enabled
+SRA count: 		 0			 0
+Bit swap: 		 enabled		 enabled
+Bit swap count:		 6			 0
+Line Attenuation:	  0.5 dB		  2.6 dB
+Signal Attenuation:	  5.8 dB		  2.2 dB
+Noise Margin:		 31.5 dB		23.6 dB
+Attainable Rate:	27232 kbits/s		 1226 kbits/s
+Actual Power:		10.5 dBm		11.9 dBm
+Total FECC:		0			 2253
+Total ES:		0			 0
+Total SES:		0			 0
+Total LOSS:		0			 0
+Total UAS:		70			 70
+Total LPRS:		0			 0
+Total LOFS:		0			 0
+Total LOLS:		0			 0
+
+
+                DS Channel1	  DS Channel0	US Channel1	  US Channel0
+Speed (kbps):		  NA	        6142		NA	         637
+SRA Previous Speed:	  NA	           0		NA	           0
+Previous Speed:		  NA	           0		NA	           0
+Total Cells:		  NA	  1474440324		NA	  1935241497
+User Cells:		  NA	      424023		NA	      572954HPDI70W1
+Reed-Solomon EC:	  NA	           0		NA	        2253
+CRC Errors:		  NA	           0		NA	           0
+Header Errors:		  NA	           0		NA	           0
+Interleave (ms):	  NA	       11.88		NA	       14.46
+Actual INP:		  NA	       11.18		NA	        6.15
+
+Training Log :	Stopped
+Training Log Filename :	flash:vdsllog.bin

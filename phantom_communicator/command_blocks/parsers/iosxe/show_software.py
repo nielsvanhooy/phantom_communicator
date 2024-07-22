@@ -22,3 +22,4 @@ def parse_show_software(command_results) -> dict[str, Any]:
         )
 
         return {"loc_and_image": get_loc_image}
+    return {}

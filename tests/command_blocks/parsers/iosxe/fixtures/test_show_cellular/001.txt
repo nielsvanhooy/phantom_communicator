@@ -1,0 +1,48 @@
+====================
+Modem Firmware Version = SWI9X30C_02.20.03.00
+International Mobile Subscriber Identity (IMSI) = 204080813332365
+International Mobile Equipment Identity (IMEI) = 356129070117251
+Integrated Circuit Card ID (ICCID) = 8931089619042680750
+Modem Status = Modem Online
+Current Modem Temperature = 40 deg C
+
+Profile 1 = ACTIVE* **
+--------
+PDP Type = IPv4
+PDP address = 10.124.234.39
+Access Point Name (APN) = ipvpn.nl
+Authentication = CHAP
+Username:  testlab@lpreovpn01.nl
+Password:  00012A37496D044B4718194242501C3208
+    Primary DNS address = 145.7.87.13
+    Secondary DNS address = 145.7.87.14
+
+    * - Default profile
+    ** - LTE attach profile
+
+
+Data Connection Information
+===========================
+Profile 1, Packet Session Status = ACTIVE
+    Cellular0/2/0:
+    Data Packets Transmitted = 31 ,  Received = 30573
+    Data Transmitted = 7345 bytes, Received = 1467456 bytes
+    IP address = 10.124.234.39
+    Primary DNS address = 145.7.87.13
+Secondary DNS address = 145.7.87.14
+
+Network Information
+===================
+Current System Time = Wed Apr 1 9:43:16 2020
+Current Service Status = Normal
+Current Service = Packet switched
+Current Roaming Status = Home
+Network Selection Mode = Automatic
+Packet switch domain(PS) state = Attached
+Network = NL KPN
+
+Current RSSI = -68 dBm
+Current RSRP = -97 dBm
+Current RSRQ = -12 dB
+Current SNR = -3.1  dB
+SIM Status = OK

@@ -5,8 +5,16 @@ class FileTransferManager:
     def __init__(self, session):
         self.session = session
 
-    async def file_transfer(
-        self, operation, src, dst="", verify=True, device_fs=None, overwrite=False, force_config=False, cleanup=True
+    async def file_transfer(  # pylint: disable=too-many-arguments
+        self,
+        operation,
+        src,
+        dst="",
+        verify=True,
+        device_fs=None,
+        overwrite=False,
+        force_config=False,
+        cleanup=True,
     ):
         scp = AsyncSrapliTransferUtils(self.session)
         return await scp.file_transfer(

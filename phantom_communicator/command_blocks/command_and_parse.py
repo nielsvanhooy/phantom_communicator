@@ -6,8 +6,10 @@ class CommandParser:
     parsers = {}
 
     def __init__(self, vendor=None, model=None, os=None):
-        from phantom_communicator.command_blocks import commands  # noqa
-        from phantom_communicator.command_blocks import parsers  # noqa
+        from phantom_communicator.command_blocks import parsers  # pylint: disable=import-outside-toplevel  # noqa: F401
+        from phantom_communicator.command_blocks import (  # pylint: disable=import-outside-toplevel  # noqa: F401
+            commands,
+        )
 
         self.vendor = vendor
         self.model = model.upper() if model else None

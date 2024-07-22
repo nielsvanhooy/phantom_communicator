@@ -66,23 +66,23 @@ class HuaweiVrpCommunicator(BaseCommunicator):
         #     boot_files, re.MULTILINE)
         # backup = backup[1] if backup else None
 
-        """
-        We are not utilising the huawei backup feature as this is not quite
-        what we'd expect.
-
-        As discussed on 22-07-2020; we won't be setting the backup image for huawei.
-        The inner workings are as follows:
-
-        - Set "next" startup system-software
-        - This will make it so that on next boot it will try to boot that image
-        - If boot fails 3 times, it will go back to "current" which is the working
-        image that still works
-        - Backup would only be necessary in the case that doesn't work, but it's
-        very unlikely as:
-            A) even in a test scenario this was not possible to reproduce
-            B) the "current" would also not be able to boot
-        - Another note is there is not enough space for 3 image files on almost all huawei's.
-        """
+        # """
+        # We are not utilising the huawei backup feature as this is not quite
+        # what we'd expect.
+        #
+        # As discussed on 22-07-2020; we won't be setting the backup image for huawei.
+        # The inner workings are as follows:
+        #
+        # - Set "next" startup system-software
+        # - This will make it so that on next boot it will try to boot that image
+        # - If boot fails 3 times, it will go back to "current" which is the working
+        # image that still works
+        # - Backup would only be necessary in the case that doesn't work, but it's
+        # very unlikely as:
+        #     A) even in a test scenario this was not possible to reproduce
+        #     B) the "current" would also not be able to boot
+        # - Another note is there is not enough space for 3 image files on almost all huawei's.
+        # """
 
         return BootFiles(main=main, backup=None)
 

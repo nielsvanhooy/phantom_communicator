@@ -1,0 +1,7 @@
+{
+    "cmd_type": "str",
+    "result": """                Head    Total(b)     Used(b)     Free(b)   Lowest(b)  Largest(b)
+Processor   106A9384   275160508    72414112   202746396   192303564   180670840
+      I/O   1DD13140    36622016    17560940    19061076    19003200    18567420""",
+    "command_name": 'show memory statistics',
+}

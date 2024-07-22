@@ -17,6 +17,10 @@ parsing_function_mapping = {
     "show_license_info": ("iosxe", "parse_show_license_info", "str"),
     "show_uptime": ("iosxe", "parse_show_uptime", "str"),
     "show_ssh_info": ("iosxe", "parse_show_ssh_info", "str"),
+    "show_memory": ("iosxe", "parse_show_memory", "python"),
+    "show_featureset": ("iosxe", "parse_show_featureset", "python"),
+    "show_controller_vdsl": ("iosxe", "parse_show_controller_vdsl", "str"),
+    "show_cellular": ("iosxe", "parse_show_cellular", "str"),
     # Add more mappings as needed
 }
 
@@ -81,9 +85,14 @@ def test_iosxe_parsers(fixture_file):
     if function_name_tuple[2] == "python":
         try:
             fixture_content = eval(fixture_content)
-            command_results = CommandResult("", cmd_type=fixture_content["cmd_type"], result=fixture_content["result"])
-        except SyntaxError:
-            pass
+            cmd_name = fixture_content.get("command_name")
+            command_results = CommandResult(
+                cmd_name or '',
+                cmd_type=fixture_content["cmd_type"],
+                result=fixture_content["result"],
+            )
+        except SyntaxError as e:
+            raise e
 
     # Dynamically call the parsing function
     result = call_parsing_function(function_name, os, command_results, test_case_name)

@@ -23,4 +23,4 @@ def import_submodules_from_folders(base_package, subfolders):
 
 base_package = "phantom_communicator.command_blocks.parsers"
 subfolders = ["iosxe", "hvrp"]
-importing = import_submodules_from_folders(base_package, subfolders)
+import_submodules_from_folders(base_package, subfolders)

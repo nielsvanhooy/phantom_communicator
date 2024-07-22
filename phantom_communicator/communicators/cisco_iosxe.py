@@ -29,15 +29,13 @@ class CiscoIosXeCommunicator(BaseCommunicator):
         return f"CiscoIosXeCommunicator({self.host=}"
 
     async def get_boot_files(self) -> BootFiles:
-        boot_files = await self.send_command(GET_BOOT_STATEMENTS_IOSXE)
-
         """
         boot-start-marker
         boot system flash:c800-universalk9-mz.SPA.154-3.M7.bin
         boot system flash:c800-universalk9-mz.SPA.154-3.M2.bin
         boot-end-marker
         """
-
+        boot_files = await self.send_command(GET_BOOT_STATEMENTS_IOSXE)
         results = re.findall(r"boot system (?:flash|bootflash):(.*?)$", boot_files.result, re.MULTILINE)
         main = results[0] if results else None
         backup = results[1] if len(results) >= 2 else None

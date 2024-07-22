@@ -4,7 +4,7 @@ from phantom_communicator.command_blocks.helpers import generate_dict
 
 
 @command_or_parse(name=commands.SHOW_INVENTORY, vendor=commands.CISCO, os="iosxe", type="parse_command")
-def parse_show_inventory(command_results, vendor="cisco") -> list:
+def parse_show_inventory(command_results) -> list:
     """
     Parses SNMP command results to extract inventory information.
 

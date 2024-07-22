@@ -174,14 +174,25 @@ class Communicator:  # pylint: disable=R0902
 class BaseCommunicator(Communicator):
     @classmethod
     def factory(cls, *args, **kwargs):
-        from phantom_communicator.communicators.cisco_iosxe import CiscoIosXeCommunicator
-        from phantom_communicator.communicators.huawei_hvrp import HuaweiVrpCommunicator
+        from phantom_communicator.communicators.cisco_iosxe import (  # pylint: disable=import-outside-toplevel  # noqa: F401
+            CiscoIosXeCommunicator,
+        )
+        from phantom_communicator.communicators.huawei_hvrp import (  # pylint: disable=import-outside-toplevel  # noqa: F401
+            HuaweiVrpCommunicator,
+        )
 
-        if kwargs.get("os") == "vrp":
-            return HuaweiVrpCommunicator(*args, **kwargs)
-        elif kwargs.get("os") in ["ios", "iosxe"]:
-            return CiscoIosXeCommunicator(*args, **kwargs)
-        raise CommunicatorNotFound(f"No Communicator defined for {kwargs.get('os')}")
+        os_to_communicator = {
+            "vrp": HuaweiVrpCommunicator,
+            "ios": CiscoIosXeCommunicator,
+            "iosxe": CiscoIosXeCommunicator,
+        }
+
+        os_name = kwargs.get("os")
+        communicator_class = os_to_communicator.get(os_name)
+
+        if communicator_class:
+            return communicator_class(*args, **kwargs)
+        raise CommunicatorNotFound(f"No Communicator defined for {os_name}")
 
     def __init__(self, host, username, password, os):
         super().__init__(host, username, password, os)
@@ -191,7 +202,11 @@ class BaseCommunicator(Communicator):
         return_data = []
 
         for cmd in cmds:
-            results = await self.execute_and_parse_command(cmd, cmd, use_cache=use_cache)
+            if isinstance(cmd, tuple):
+                cmd, optional = cmd
+                results = await self.execute_and_parse_command(cmd, cmd, use_cache=use_cache, optional=optional)
+            else:
+                results = await self.execute_and_parse_command(cmd, cmd, use_cache=use_cache)
 
             if isinstance(results, list):
                 for result in results:
@@ -211,23 +226,20 @@ class BaseCommunicator(Communicator):
 
         return grouped_results
 
-    async def execute_and_parse_command(self, cmd, original_cmd_name=None, use_cache=False):
-        cmd_obj = getattr(self.command_block, cmd)(type="command")()
+    async def execute_and_parse_command(self, cmd, original_cmd_name=None, use_cache=False, optional=None):
+        cmd_obj = getattr(self.command_block, cmd)(type="command")(optional)
         executor = CommandExecutor(self, self.command_block)
-        return await executor.execute_command(cmd, cmd_obj, original_cmd_name=original_cmd_name, use_cache=use_cache)
+        return await executor.execute_command(cmd_obj, original_cmd_name=original_cmd_name, use_cache=use_cache)
 
     async def command(self, cmd, use_cache=False, original_cmd_name=None):
         if isinstance(cmd, list):
-            async with asyncio.TaskGroup() as tg:
-                results = []
-
-                async def run_command(single_cmd):
+            results = []
+            for single_cmd in cmd:
+                try:
                     result = await self.command(single_cmd, use_cache=use_cache, original_cmd_name=original_cmd_name)
                     results.append(result)
-
-                for single_cmd in cmd:
-                    tg.create_task(run_command(single_cmd))
-
+                except Exception as e:
+                    print(e)
             return results
 
         command_str = cmd.command if isinstance(cmd, Command) else cmd
@@ -259,49 +271,6 @@ class BaseCommunicator(Communicator):
 
         # Fallback for unrecognized command types
         return "Unrecognized command type."
-
-    # async def command(self, cmd, use_cache=False, original_cmd_name=None):
-    #     if isinstance(cmd, list):
-    #         # Handle a list of commands
-    #         results = []
-    #         for single_cmd in cmd:
-    #             result = await self.command(single_cmd, use_cache=use_cache, original_cmd_name=original_cmd_name)
-    #             results.append(result)
-    #         return results
-    #
-    #     if isinstance(cmd, str) or isinstance(cmd, Command):
-    #         # Handle string and Command instances
-    #         try:
-    #             if not original_cmd_name:
-    #                 original_cmd_name = cmd or cmd.command
-    #             return await self.send_command(cmd.command, original_cmd_name=original_cmd_name, use_cache=use_cache)
-    #         except CommandNotImplementedError:
-    #             pass
-    #         return await self.send_command(
-    #             cmd.command,
-    #             original_cmd_name=original_cmd_name if isinstance(cmd, Command) else cmd,
-    #             use_cache=use_cache,
-    #         )
-    #
-    #     elif isinstance(cmd, SNMPCommand):
-    #         # If this is an SNMPCommand, do the snmp readout and return the output
-    #         if self.skip_snmp_on_fail and self._snmp_failed:
-    #             print("Skipping snmp because of previous failure")
-    #         else:
-    #             try:
-    #                 return await self.snmp_command(cmd)
-    #             except Exception as e:
-    #                 import traceback
-    #
-    #                 traceback.print_exc()
-    #                 if "Timeout: No Response from" in str(e):
-    #                     self._snmp_failed = True
-    #                 if not self.skip_snmp_on_fail:
-    #                     raise
-    #         return None
-    #
-    #     # Fallback for unrecognized command types
-    #     return "Unrecognized command type"
 
     async def send_command(self, command: str, original_cmd_name=None, use_cache=True):
         """

@@ -1,3 +1,5 @@
+import re
+
 from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.decorators import command_or_parse
 from phantom_communicator.command_blocks.ip_utils import check_if_ip_in_network
@@ -45,8 +47,6 @@ def parse_show_run_dhcp(command_results) -> list:
                     excluded_ip_addresses = {"start": exclude_addresses["data"][0], "end": exclude_addresses["data"][0]}
 
         return excluded_ip_addresses
-
-    import re
 
     p_get_dhcp_pool_blocks = re.compile(r"(?P<dhcp_pool_block>ip dhcp pool[\s\S]*?(?=\n.*?\!))")
 

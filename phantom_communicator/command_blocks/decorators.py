@@ -1,4 +1,5 @@
 from functools import wraps
+from typing import Callable
 
 from phantom_communicator.command_blocks.command import Command
 from phantom_communicator.command_blocks.command_and_parse import CommandParser
@@ -31,35 +32,32 @@ class command_or_parse:
         return wrapper
 
 
-def return_config(vendor=None, end=False, custom=False):
+def return_config(vendor: str = None, end: bool = False, custom: bool = False) -> Callable:
     """
     Create a list of Command's and append end/quit if 'end' is True
 
-    :param vendor:
-    :param end:
-    :param custom:
-    :return:
+    :param vendor: The vendor name
+    :param end: Whether to append an exit command
+    :param custom: Whether the result is custom or should be converted
+    :return: Decorated function
     """
+    vendor_exit_commands = {
+        "cisco": " exit",
+        "huawei": " quit",
+    }
 
-    def decorator(f):
-        def wrapper(*args, **kwargs):
+    def decorator(f: Callable) -> Callable:
+        def wrapper(*args, **kwargs) -> list:
             result = f(*args, **kwargs)
 
             if not result:
                 return []
 
-            if end:
-                if vendor == "cisco":
-                    if custom:
-                        result.append(Command(" exit"))
-                    else:
-                        result.append(" exit")
-                elif vendor == "huawei":
-                    result.append(" quit")
-            if custom:
-                return result
-            else:
-                return commands_list(result)
+            exit_command = vendor_exit_commands.get(vendor)
+            if end and exit_command:
+                result.append(Command(exit_command) if custom else exit_command)
+
+            return result if custom else commands_list(result)
 
         return wrapper
 

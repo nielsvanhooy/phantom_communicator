@@ -1,5 +1,5 @@
 from phantom_communicator.command_blocks import constants as commands
-from phantom_communicator.command_blocks.command import Command, CommandConstructor, SNMPCommand
+from phantom_communicator.command_blocks.command import Command, SNMPCommand
 from phantom_communicator.command_blocks.decorators import command_or_parse, return_config
 
 
@@ -226,48 +226,60 @@ def remove_eem_ssh_script() -> list:
     ]
 
 
-@command_or_parse(name=commands.SHOW_CELLULAR, vendor=commands.CISCO, os="iosxe")
-class ShowCellularCommand(CommandConstructor):
-    @staticmethod
-    def get_cellulars(cpe) -> list:
-        return [
-            item
-            for item in cpe.wan_ports.all()
-            if (item.product_configuration_wan.access_type == "lte" and not item.shutdown)
-        ]
+# @command_or_parse(name=commands.SHOW_CELLULAR, vendor=commands.CISCO, os="iosxe")
+# class ShowCellularCommand(CommandConstructor):
+#     @staticmethod
+#     def get_cellulars(cpe) -> list:
+#         return [
+#             item
+#             for item in cpe.wan_ports.all()
+#             if (item.product_configuration_wan.access_type == "lte" and not item.shutdown)
+#         ]
+#
+#     def is_eligible_to_execute(self, cpe) -> bool:
+#         # any active cellular present ?
+#         return True if self.get_cellulars(cpe) else False
+#
+#     def get_commands(self, cpe) -> Command:
+#         cellular = self.get_cellulars(cpe)[0]
+#         interface = str(
+#             cellular.product_configuration_wan.port_name + " " + cellular.product_configuration_wan.port_number
+#         )
+#         return Command(f"show {interface} all")
 
-    def is_eligible_to_execute(self, cpe) -> bool:
-        # any active cellular present ?
-        return True if self.get_cellulars(cpe) else False
 
-    def get_commands(self, cpe) -> Command:
-        cellular = self.get_cellulars(cpe)[0]
-        interface = str(
-            cellular.product_configuration_wan.port_name + " " + cellular.product_configuration_wan.port_number
-        )
-        return Command(f"show {interface} all")
-
-
-@command_or_parse(name=commands.SHOW_CONTROLLER, vendor=commands.CISCO, os="iosxe")
-class ShowControllerCommand(CommandConstructor):
-    @staticmethod
-    def get_controller(cpe) -> list:
-        return [
-            item
-            for item in cpe.wan_ports.all()
-            if ("vdsl" in item.product_configuration_wan.access_type and not item.shutdown)
-        ]
-
-    def is_eligible_to_execute(self, cpe) -> bool:
-        # any active DSL controller present ?
-        return True if self.get_controller(cpe) else False
-
-    def get_commands(self, cpe) -> Command:
-        dsl = self.get_controller(cpe)[0]
-        interface = str("VDSL " + dsl.product_configuration_wan.port_number)
-        return Command(f"show controller {interface}")
+# @command_or_parse(name=commands.SHOW_CONTROLLER, vendor=commands.CISCO, os="iosxe")
+# class ShowControllerCommand(CommandConstructor):
+#     @staticmethod
+#     def get_controller(cpe) -> list:
+#         return [
+#             item
+#             for item in cpe.wan_ports.all()
+#             if ("vdsl" in item.product_configuration_wan.access_type and not item.shutdown)
+#         ]
+#
+#     def is_eligible_to_execute(self, cpe) -> bool:
+#         # any active DSL controller present ?
+#         return True if self.get_controller(cpe) else False
+#
+#     def get_commands(self, cpe) -> Command:
+#         dsl = self.get_controller(cpe)[0]
+#         interface = str("VDSL " + dsl.product_configuration_wan.port_number)
+#         return Command(f"show controller {interface}")
 
 
 @command_or_parse(name=commands.SHOW_DHCP, vendor=commands.CISCO, os="iosxe")
 def show_run_dhcp(*args, **kwargs) -> Command:
     return Command("show running-config")
+
+
+@command_or_parse(name=commands.SHOW_CONTROLLER_VDSL, vendor=commands.CISCO, os="iosxe")
+def show_controller_vdsl(*args, **kwargs) -> Command:
+    (inner_args,) = args
+    return Command(f"show controller vdsl {inner_args[0]}")
+
+
+@command_or_parse(name=commands.SHOW_CELLULAR, vendor=commands.CISCO, os="iosxe")
+def show_cellular(*args, **kwargs) -> Command:
+    (inner_args,) = args
+    return Command(f"show {inner_args[0]} {inner_args[1]} all")
