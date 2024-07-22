@@ -21,6 +21,8 @@ parsing_function_mapping = {
     "show_featureset": ("iosxe", "parse_show_featureset", "python"),
     "show_controller_vdsl": ("iosxe", "parse_show_controller_vdsl", "str"),
     "show_cellular": ("iosxe", "parse_show_cellular", "str"),
+    "show_flash_statistics": ("iosxe", "parse_show_flash_statistics", "python"),
+    "show_memory_statistics": ("iosxe", "parse_show_memory_statistics", "python"),
     # Add more mappings as needed
 }
 

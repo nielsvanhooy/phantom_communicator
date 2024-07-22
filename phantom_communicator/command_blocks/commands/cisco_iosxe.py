@@ -72,10 +72,16 @@ def show_startup_config() -> Command:
     return Command("show startup-config")
 
 
-@command_or_parse(name=commands.SHOW_MEMORY, vendor=commands.CISCO, os="iosxe")
+@command_or_parse(name=commands.SHOW_MEMORY_STATISTICS, vendor=commands.CISCO, os="iosxe")
 @return_config()
-def show_memory(*args) -> list:
-    return ["show memory statistics", "sh flash: | i bytes"]
+def show_memory(*args) -> Command:
+    return Command("show memory statistics")
+
+
+@command_or_parse(name=commands.SHOW_FLASH_STATISTICS, vendor=commands.CISCO, os="iosxe")
+@return_config()
+def show_flash_statistics(*args) -> Command:
+    return Command("sh flash: | i bytes")
 
 
 @command_or_parse(name=commands.SHOW_INVENTORY, vendor=commands.CISCO, os="iosxe")
