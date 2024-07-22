@@ -1,6 +1,8 @@
 import re
 from typing import Union
 
+from netaddr import valid_ipv4, valid_ipv6
+
 from .command import Command
 
 
@@ -136,3 +138,13 @@ def crypto7decrypt(enc_pwd: str) -> str:
 
     except (IndexError, ValueError):
         return password
+
+
+def is_valid_ip(static_route: object) -> bool:
+    offset = 0
+    static_route = static_route.strip()
+    items = static_route.split(" ")
+    if items[0] == "vrf" or items[0] == "vpn-instance":
+        offset = 2
+
+    return True if (valid_ipv4(items[offset], flags=1) or valid_ipv6(items[offset].split("/")[0])) else False

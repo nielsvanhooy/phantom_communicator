@@ -1,0 +1,15 @@
+!
+no ip http server
+no ip http secure-server
+ip tacacs source-interface Loopback0
+ip ssh time-out 60
+ip ssh logging events
+ip ssh version 2
+ip ssh server algorithm mac hmac-sha2-512 hmac-sha2-256 hmac-sha1
+ip scp server enable
+ip route 0.0.0.0 0.0.0.0 10.120.72.62
+ip route 145.13.71.128 255.255.255.128 10.120.72.62
+ip route 145.13.76.0 255.255.255.0 10.120.72.62
+ip route 193.172.69.0 255.255.255.128 10.120.72.62
+ip route 193.172.69.0 255.255.255.128 Null0 10
+!

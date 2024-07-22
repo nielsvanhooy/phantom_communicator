@@ -62,8 +62,13 @@ def reboot_in() -> list:
     return ["reload in 1\n"]
 
 
+@command_or_parse(name=commands.SHOW_RUN_IP_ROUTE, vendor=commands.CISCO, os="iosxe")
+def show_run_ip_route(*args) -> Command:
+    return Command("show running-config")
+
+
 @command_or_parse(name=commands.SHOW_RUNNING_CONFIG, vendor=commands.CISCO, os="iosxe")
-def show_running_config() -> Command:
+def show_running_config(*args) -> Command:
     return Command("show running-config")
 
 
@@ -73,13 +78,11 @@ def show_startup_config() -> Command:
 
 
 @command_or_parse(name=commands.SHOW_MEMORY_STATISTICS, vendor=commands.CISCO, os="iosxe")
-@return_config()
 def show_memory(*args) -> Command:
     return Command("show memory statistics")
 
 
 @command_or_parse(name=commands.SHOW_FLASH_STATISTICS, vendor=commands.CISCO, os="iosxe")
-@return_config()
 def show_flash_statistics(*args) -> Command:
     return Command("sh flash: | i bytes")
 
