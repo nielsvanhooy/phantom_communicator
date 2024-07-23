@@ -52,13 +52,13 @@ def reset_startup_config(config_file) -> Command:
 
 @command_or_parse(name=commands.REBOOT, vendor=commands.CISCO, os="iosxe")
 @return_config()
-def reboot() -> list:
+def reboot(*args) -> list:
     return ["reload\n"]
 
 
 @command_or_parse(name=commands.REBOOT_IN, vendor=commands.CISCO, os="iosxe")
 @return_config()
-def reboot_in() -> list:
+def reboot_in(*args) -> list:
     return ["reload in 1\n"]
 
 
@@ -72,8 +72,13 @@ def show_running_config(*args) -> Command:
     return Command("show running-config")
 
 
+@command_or_parse(name=commands.SHOW_HOST_CONFIGURATION, vendor=commands.CISCO, os="iosxe")
+def show_host_configuration(*args) -> Command:
+    return Command("show running-config")
+
+
 @command_or_parse(name=commands.SHOW_STARTUP_CONFIG, vendor=commands.CISCO, os="iosxe")
-def show_startup_config() -> Command:
+def show_startup_config(*args) -> Command:
     return Command("show startup-config")
 
 

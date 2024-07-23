@@ -10,20 +10,22 @@ from phantom_communicator.command_blocks.command_result import CommandResult
 # if fixture files ex: 001.txt (has just text), 002.txt (has python object) mixed type of input = use "python"
 # otherwise use "str"
 parsing_function_mapping = {
-    "show_config_dhcp": ("iosxe", "parse_show_run_dhcp", "str"),
-    "show_inventory": ("iosxe", "parse_show_inventory", "python"),
-    "show_software": ("iosxe", "parse_show_software", "python"),
-    "show_version": ("iosxe", "parse_show_ver", "str"),
-    "show_license_info": ("iosxe", "parse_show_license_info", "str"),
-    "show_uptime": ("iosxe", "parse_show_uptime", "str"),
-    "show_ssh_info": ("iosxe", "parse_show_ssh_info", "str"),
-    "show_memory": ("iosxe", "parse_show_memory", "python"),
-    "show_featureset": ("iosxe", "parse_show_featureset", "python"),
-    "show_controller_vdsl": ("iosxe", "parse_show_controller_vdsl", "str"),
-    "show_cellular": ("iosxe", "parse_show_cellular", "str"),
-    "show_flash_statistics": ("iosxe", "parse_show_flash_statistics", "python"),
-    "show_memory_statistics": ("iosxe", "parse_show_memory_statistics", "python"),
-    "show_run_ip_route": ("iosxe", "parse_show_run_ip_route", "str"),
+    # "show_config_dhcp": ("iosxe", "parse_show_run_dhcp", "str"),
+    # "show_inventory": ("iosxe", "parse_show_inventory", "python"),
+    # "show_software": ("iosxe", "parse_show_software", "python"),
+    # "show_version": ("iosxe", "parse_show_ver", "str"),
+    # "show_license_info": ("iosxe", "parse_show_license_info", "str"),
+    # "show_uptime": ("iosxe", "parse_show_uptime", "str"),
+    # "show_ssh_info": ("iosxe", "parse_show_ssh_info", "str"),
+    # "show_memory": ("iosxe", "parse_show_memory", "python"),
+    # "show_featureset": ("iosxe", "parse_show_featureset", "python"),
+    # "show_controller_vdsl": ("iosxe", "parse_show_controller_vdsl", "str"),
+    # "show_cellular": ("iosxe", "parse_show_cellular", "str"),
+    # "show_flash_statistics": ("iosxe", "parse_show_flash_statistics", "python"),
+    # "show_memory_statistics": ("iosxe", "parse_show_memory_statistics", "python"),
+    # "show_run_ip_route": ("iosxe", "parse_show_run_ip_route", "str"),
+    "show_host_configuration": ("iosxe", "parse_show_host_configuration", "str"),
+
     # Add more mappings as needed
 }
 

@@ -1,0 +1,374 @@
+
+!
+version 16.9
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+no service dhcp
+no service password-recovery
+platform usb disable
+no platform punt-keepalive disable-kernel-core
+platform bfd-debug-trace 1
+platform xconnect load-balance-hash-algo mac-ip-instanceid
+platform tcam-parity-error enable
+platform tcam-threshold alarm-frequency 1
+!
+hostname vos-ehv-5656ag-02
+!
+boot-start-marker
+boot system bootflash:asr920-universalk9_npe.16.09.05f.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 16000
+logging persistent immediate protected
+no logging console
+enable secret 9 $9$.Nqe.7.fr8fnAf$c.7991qOA06kxpwb/zJy9mctMimDijVExKfi3M5uC5E
+!
+aaa new-model
+!
+!
+aaa authentication fail-message
+**************************************************************
+*                                                            *
+*                        Login Failed!                       *
+*                                                            *
+*               Unauthorized access to this                  *
+*               system/network is prohibited.                *
+*                                                            *
+*                                                            *
+**************************************************************
+
+aaa authentication login default group tacacs+ enable
+aaa authentication enable default group tacacs+ enable
+aaa authorization console
+aaa authorization exec default group tacacs+ if-authenticated
+aaa authorization commands 15 default group tacacs+ none
+aaa accounting exec default start-stop group tacacs+
+aaa accounting commands 1 default start-stop group tacacs+
+aaa accounting commands 15 default start-stop group tacacs+
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CET 1 0
+clock summer-time CEST recurring last Sun Mar 2:00 last Sun Oct 3:00
+no ip source-route
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name mrs
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+license udi pid ASR-920-12CZ-A sn FOC2503NQEG
+license accept end user agreement
+no license smart enable
+!
+!
+spanning-tree extend system-id
+spanning-tree vlan 10 priority 61440
+sdm prefer default
+diagnostic bootup level minimal
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+!
+class-map match-all management-traffic-af21
+ match ip dscp af21
+!
+policy-map policy-cbwfq
+ class management-traffic-af21
+  bandwidth remaining percent 1
+  set ip dscp af21
+ class class-default
+  random-detect dscp-based
+  queue-limit 10000 us
+policy-map shape-to-10
+ class class-default
+  shape average 10000000 200000 200000
+   service-policy policy-cbwfq
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.120.72.1 255.255.255.255
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/3
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/4
+ description Connection to Epacity # 1361004 #
+ ip address 10.120.72.61 255.255.255.252
+ no ip proxy-arp
+ media-type rj45
+ speed 100
+ no negotiation auto
+ service-policy output shape-to-10
+!
+interface GigabitEthernet0/0/5
+ description Connection to customer LAN
+ ip address 10.2.4.252 255.255.255.0
+ no ip proxy-arp
+ ip access-group 160 in
+ ip route-cache same-interface
+ media-type auto-select
+ negotiation auto
+ ntp disable
+ hold-queue 500 in
+ hold-queue 100 out
+!
+interface GigabitEthernet0/0/6
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface GigabitEthernet0/0/7
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface GigabitEthernet0/0/8
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface GigabitEthernet0/0/9
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface GigabitEthernet0/0/10
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface GigabitEthernet0/0/11
+ no ip address
+ shutdown
+ media-type auto-select
+ negotiation auto
+!
+interface TenGigabitEthernet0/0/12
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface TenGigabitEthernet0/0/13
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+ip default-gateway 10.120.72.62
+no ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip tacacs source-interface Loopback0
+ip ssh time-out 60
+ip ssh logging events
+ip ssh version 2
+ip ssh server algorithm mac hmac-sha2-512 hmac-sha2-256 hmac-sha1
+ip scp server enable
+ip route 0.0.0.0 0.0.0.0 10.120.72.62
+ip route 145.13.71.128 255.255.255.128 10.120.72.62
+ip route 145.13.76.0 255.255.255.0 10.120.72.62
+ip route 193.172.69.0 255.255.255.128 10.120.72.62
+ip route 193.172.69.0 255.255.255.128 Null0 10
+!
+logging history notifications
+logging alarm informational
+logging origin-id hostname
+logging source-interface Loopback0
+logging snmp-trap emergencies
+logging snmp-trap alerts
+logging snmp-trap critical
+logging snmp-trap errors
+logging snmp-trap warnings
+logging snmp-trap notifications
+logging host 193.172.69.78
+logging host 193.172.69.110
+access-list 2 deny   any
+access-list 3 permit 193.172.69.107
+access-list 3 permit 193.172.69.75
+access-list 3 deny   any
+access-list 10 permit 193.172.69.64 0.0.0.31
+access-list 10 permit 193.172.69.96 0.0.0.31
+access-list 10 deny   any
+access-list 14 permit 193.172.69.0 0.0.0.127
+access-list 14 deny   any
+access-list 93 permit 193.172.69.0 0.0.0.127
+access-list 93 permit 145.13.71.128 0.0.0.127
+access-list 93 permit 145.13.76.0 0.0.0.255
+access-list 93 deny   any
+ip access-list extended 160
+ deny   ip any 10.120.0.0 0.7.255.255
+ deny   ip 10.120.0.0 0.7.255.255 any
+ deny   ip any 193.172.69.0 0.0.0.127
+ deny   ip 193.172.69.0 0.0.0.127 any
+ deny   ip any 145.13.71.128 0.0.0.127
+ deny   ip 145.13.71.128 0.0.0.127 any
+ deny   ip any 145.13.76.0 0.0.0.255
+ deny   ip 145.13.76.0 0.0.0.255 any
+ permit ip any any
+ip access-list extended 166
+ permit ip host 10.120.72.1 193.172.69.0 0.0.0.127
+ permit ip host 10.120.72.1 145.13.71.128 0.0.0.127
+ permit ip host 10.120.72.1 145.13.76.0 0.0.0.255
+ deny   ip any any
+!
+snmp-server community 7QuIvTihXlxkEicZl8SAinw6 RO 10
+snmp-server community zQIVUcbdV6lFnM4Oo075Ii2M RO 93
+snmp-server trap-source Loopback0
+snmp-server enable traps syslog
+snmp-server host 145.13.76.159 version 2c zQIVUcbdV6lFnM4Oo075Ii2M
+snmp-server host 145.13.76.33 version 2c zQIVUcbdV6lFnM4Oo075Ii2M
+snmp ifmib ifindex persist
+!
+tacacs server pri-acs
+ address ipv4 193.172.69.74
+ key 7 091F440834513B3F060228007E0A202438
+tacacs server sec-acs
+ address ipv4 193.172.69.106
+ key 7 1444180A2150060629261F1F773D0F010E
+!
+!
+!
+control-plane
+!
+privilege exec level 1 traceroute
+privilege exec level 1 ping
+banner exec
+**************************************************************
+*                                                            *
+*   You have logged on to the KPN Managed VPN service.       *
+*   Network management from The Hague, Netherlands.          *
+*                                                            *
+*   Use of this system/network is restricted to employees    *
+*   of KPN, employment agency staff, work experience         *
+*   trainees and persons with a contract of employment       *
+*   provided that they are working for KPN and are           *
+*   authorized to use the system.                            *
+*                                                            *
+*   The software and data in this system/network are owned   *
+*   by KPN and may be viewed, changed, copied or deleted     *
+*   only by authorized persons for the purpose of their      *
+*   work for KPN.                                            *
+*                                                            *
+*   Use Ctrl z and quit to logout.                           *
+*                                                            *
+*                                                            *
+**************************************************************
+
+banner login
+**************************************************************
+*      .                                                     *
+*     / \        UNAUTHORISED ACCESS PROHIBITED !!           *
+*    (kpn)                                                   *
+*     \_/    Contact your kpn servicedesk for questions.     *
+*                                                            *
+**************************************************************
+
+!
+line con 0
+ exec-timeout 9 0
+ password 7 08235F770A21102F400A2B3E25193010643632222E0E5B3B47
+ transport preferred none
+ transport output none
+ stopbits 1
+line vty 0 4
+ access-class 14 in
+ exec-timeout 9 0
+ password 7 070A0F42680D15550617591E00727F2B3E0B137A23001D1017
+ logging synchronous
+ transport preferred none
+ transport input ssh
+ transport output none
+!
+ztp disable
+ntp source Loopback0
+ntp access-group peer 3
+ntp access-group serve 2
+ntp access-group serve-only 2
+ntp access-group query-only 2
+ntp server 193.172.69.75 prefer
+ntp server 193.172.69.107
+!
+!
+end
