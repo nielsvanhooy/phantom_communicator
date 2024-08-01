@@ -43,7 +43,7 @@ def generate_dict(data):
         preceding_segment = parts[-2]
         if last_segment not in result:
             result[last_segment] = {}
-        result[last_segment][preceding_segment] = f'"{desc}"'
+        result[last_segment][preceding_segment] = desc
     return result
 
 

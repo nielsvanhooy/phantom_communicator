@@ -20,23 +20,21 @@ async def test_show_ver():
         data = await conn.execute_and_parse_commands(
             [
                 "show_host_configuration",
-                # "show_run_ip_route",
-                # "show_config_dhcp",
-                # "show_version",
-                # "show_software",
-                # "show_inventory",
-                # "show_uptime",
-                # "show_license_info",
-                # "show_ssh_info",
-                # ("show_controller_vdsl", [0]),
-                # "show_memory_statistics",
-                # "show_flash_statistics",
-                # "show_featureset",
-                # ("show_cellular", [0, 0]),
+                "show_run_ip_route",
+                "show_config_dhcp",
+                "show_version",
+                "show_software",
+                "show_inventory",
+                "show_uptime",
+                "show_license_info",
+                "show_ssh_info",
+                ("show_controller_vdsl", [0]),
+                "show_memory_statistics",
+                "show_flash_statistics",
+                "show_featureset",
+                ("show_cellular", [0, 0]),
             ],
             use_cache=True,
         )
         print(data)
-        data_two = await conn.send_command("show int desc")
-        data_three = await conn.send_commands(["show int desc", "show ip int brief"])
     lala = "loeloe"
