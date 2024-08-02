@@ -369,7 +369,7 @@ class BaseCommunicator(Communicator):
             return CommandResult(
                 command_name=cmd.command,
                 raw_result="Timeout",
-                result="Timeout",
+                result="",
                 command_or_parse_name=cmd.command,
                 cmd_type="snmp",
             )
@@ -377,7 +377,7 @@ class BaseCommunicator(Communicator):
             return CommandResult(
                 command_name=cmd.command,
                 raw_result=str(e),
-                result="Error",
+                result="",
                 command_or_parse_name=cmd.command,
                 cmd_type="snmp",
             )

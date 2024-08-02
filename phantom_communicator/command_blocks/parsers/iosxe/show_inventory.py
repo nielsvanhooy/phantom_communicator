@@ -12,7 +12,7 @@ def parse_show_inventory(command_results) -> list:
     :param vendor: The vendor name, defaults to 'cisco'.
     :return: A list of dictionaries, each representing an inventory item.
     """
-    if command_results.cmd_type != "snmp":
+    if not command_results.result or command_results.cmd_type != "snmp":
         return []
 
     matches_dict = generate_dict(command_results.result)
