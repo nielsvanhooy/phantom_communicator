@@ -296,4 +296,4 @@ def show_controller_vdsl(*args, **kwargs) -> Command:
 @command_or_parse(name=commands.SHOW_CELLULAR, vendor=commands.CISCO, os="iosxe")
 def show_cellular(*args, **kwargs) -> Command:
     (inner_args,) = args
-    return Command(f"show {inner_args[0]} {inner_args[1]} all")
+    return Command(f"show cellular {inner_args[0]} {inner_args[1]} all")

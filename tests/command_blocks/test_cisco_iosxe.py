@@ -14,7 +14,7 @@ async def test_show_ver():
 
     # test_parsers.show_version().parser
 
-    communicator = Communicator.factory(host="192.168.1.50", username="lagen008", password="lagen008", os="iosxe")
+    communicator = Communicator.factory(host="10.1.1.137", username="lagen008", password="lagen008", os="iosxe")
     communicator.community_string = "7QuIvTihXlxkEicZl8SAinw6"
     async with communicator as conn:
         data = await conn.execute_and_parse_commands(
