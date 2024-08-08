@@ -28,7 +28,7 @@ async def test_show_ver():
                 "show_uptime",
                 "show_license_info",
                 "show_ssh_info",
-                ("show_controller_vdsl", [0]),
+                ("show_controller", [0,  0]),
                 "show_memory_statistics",
                 "show_flash_statistics",
                 "show_featureset",

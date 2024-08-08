@@ -287,10 +287,10 @@ def show_run_dhcp(*args, **kwargs) -> Command:
     return Command("show running-config")
 
 
-@command_or_parse(name=commands.SHOW_CONTROLLER_VDSL, vendor=commands.CISCO, os="iosxe")
-def show_controller_vdsl(*args, **kwargs) -> Command:
+@command_or_parse(name=commands.SHOW_CONTROLLER, vendor=commands.CISCO, os="iosxe")
+def show_controller(*args, **kwargs) -> Command:
     (inner_args,) = args
-    return Command(f"show controller vdsl {inner_args[0]}")
+    return Command(f"show controller {inner_args[0]} {inner_args[1]}")
 
 
 @command_or_parse(name=commands.SHOW_CELLULAR, vendor=commands.CISCO, os="iosxe")
