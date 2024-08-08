@@ -5,8 +5,8 @@ from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.decorators import command_or_parse
 
 
-@command_or_parse(name=commands.SHOW_CONTROLLER, vendor=commands.CISCO, os="iosxe", type="parse_command")
-def parse_show_controller(command_results) -> dict[str, Any]:
+@command_or_parse(name=commands.SHOW_CONTROLLER_VDSL, vendor=commands.CISCO, os="iosxe", type="parse_command")
+def parse_show_controller_vdsl(command_results) -> dict[str, Any]:
     data = command_results.result
 
     properties = {}
