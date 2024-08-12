@@ -46,7 +46,7 @@ Tunnel10               10.1.1.242      YES NVRAM  up                    down"""
     assert response.result == expected_result
     assert response.command_name == cmd
 
-    assert iosxe_communicator.channel_io[cmd]['result'] == expected_result
+    assert iosxe_communicator.channel_io[cmd]["result"] == expected_result
 
 
 @pytest.mark.scrapli_replay
@@ -124,4 +124,3 @@ async def test_iosv_xe_command_blocks(iosxe_communicator):
     # stupid assertation just to see if the command is in the blocks
     cmd = getattr(iosxe_communicator.command_block, "setup_session")()()
     assert cmd.command == "terminal length 0"
-

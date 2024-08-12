@@ -109,7 +109,7 @@ def parse_show_run_dhcp(command_results) -> list:
     # try except for routers without pools
     get_dhcp_pool_blocks = p_get_dhcp_pool_blocks.findall(data)
 
-    dhcp_pools = {}
+    return_data = []
     excludes_list = []
     for line in data.splitlines():
         line = line.strip()
@@ -126,6 +126,7 @@ def parse_show_run_dhcp(command_results) -> list:
             excludes_list.append({"vrf": vrf, "data": excludes.split(" ")})
 
     for block in get_dhcp_pool_blocks:
+        dhcp_pools = {}
         # set the indexes for nested dicts to 1 with every new block to parse
         index_networks = 1
         index_excluded = 1
@@ -223,4 +224,6 @@ def parse_show_run_dhcp(command_results) -> list:
                 boot_file = m.groupdict()["boot_file"]
                 dhcp_pools[pool_name]["boot_file"] = boot_file
 
-    return dhcp_pools
+        return_data.append(dhcp_pools)
+
+    return return_data

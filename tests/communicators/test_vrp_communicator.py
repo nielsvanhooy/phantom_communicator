@@ -61,7 +61,7 @@ Vlanif1                     *down down         --     --          0          0""
     assert response.result == expected_result
     assert response.command_name == cmd
 
-    assert vrp_communicator.channel_io[cmd]['result'] == expected_result
+    assert vrp_communicator.channel_io[cmd]["result"] == expected_result
 
 
 @pytest.mark.scrapli_replay
