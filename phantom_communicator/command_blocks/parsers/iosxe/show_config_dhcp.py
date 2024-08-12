@@ -139,17 +139,17 @@ def parse_show_run_dhcp(command_results) -> list:
             if m:
                 pool_name = m.groupdict()["pool_name"]
                 # setup nested items
-                dhcp_pools[pool_name] = {"networks": {}, "dhcp_options": {}, "dhcp_excludes": {}}
+                dhcp_pools = {"networks": {}, "dhcp_options": {}, "dhcp_excludes": {}, "pool_name": pool_name}
 
             m = p_block_domain.match(line)
             if m:
                 domain_name = m.groupdict()["domain_name"]
-                dhcp_pools[pool_name]["domain"] = domain_name
+                dhcp_pools["domain"] = domain_name
 
             m = p_block_gateway.match(line)
             if m:
                 gateway = m.groupdict()["gateway"]
-                dhcp_pools[pool_name]["gateway"] = gateway
+                dhcp_pools["gateway"] = gateway
 
             # reset m cause below ones look in global statements
             m = None
@@ -168,7 +168,7 @@ def parse_show_run_dhcp(command_results) -> list:
                     "subnet_mask": subnet,
                     "secondary": secondary,
                 }
-                dhcp_pools[pool_name]["networks"][index_networks] = network
+                dhcp_pools["networks"][index_networks] = network
                 index_networks += 1
                 # make sure there are excludes otherwise useless
                 if excludes_list:
@@ -177,7 +177,7 @@ def parse_show_run_dhcp(command_results) -> list:
                             excluded, network["ip"], network["subnet_mask"], global_block_vrf
                         )
                         if matched:
-                            dhcp_pools[pool_name]["dhcp_excludes"][index_excluded] = matched
+                            dhcp_pools["dhcp_excludes"][index_excluded] = matched
                             index_excluded += 1
 
             m = p_block_options.match(line)
@@ -190,7 +190,7 @@ def parse_show_run_dhcp(command_results) -> list:
                     "type": type,
                     "data": data,
                 }
-                dhcp_pools[pool_name]["dhcp_options"][index_options] = option
+                dhcp_pools["dhcp_options"][index_options] = option
                 index_options += 1
 
             m = p_block_netbios_servers.match(line)
@@ -199,7 +199,7 @@ def parse_show_run_dhcp(command_results) -> list:
                 # but then its a not a nice list
                 _ = m.groupdict()["netbios_servers"]
                 netbios_servers = _.split(" ")
-                dhcp_pools[pool_name]["netbios_servers"] = netbios_servers
+                dhcp_pools["netbios_servers"] = netbios_servers
 
             m = p_block_dns_servers.match(line)
             if m:
@@ -207,22 +207,22 @@ def parse_show_run_dhcp(command_results) -> list:
                 # but then its a not a nice list
                 _ = m.groupdict()["dns_servers"]
                 dns_servers = _.split(" ")
-                dhcp_pools[pool_name]["dns_servers"] = dns_servers
+                dhcp_pools["dns_servers"] = dns_servers
 
             m = p_block_lease_time.match(line)
             if m:
                 lease_time = m.groupdict()["lease_options"]
-                dhcp_pools[pool_name]["lease_time"] = lease_time
+                dhcp_pools["lease_time"] = lease_time
 
             m = p_block_vrf.match(line)
             if m:
                 vrf = m.groupdict()["vrf"]
-                dhcp_pools[pool_name]["vrf"] = vrf
+                dhcp_pools["vrf"] = vrf
 
             m = p_boot_file.match(line)
             if m:
                 boot_file = m.groupdict()["boot_file"]
-                dhcp_pools[pool_name]["boot_file"] = boot_file
+                dhcp_pools["boot_file"] = boot_file
 
         return_data.append(dhcp_pools)
 
