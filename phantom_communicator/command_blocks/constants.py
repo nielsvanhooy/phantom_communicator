@@ -30,6 +30,7 @@ SHOW_CONTROLLER_VDSL = "show_controller_vdsl"
 SHOW_INVENTORY = "show_inventory"
 SHOW_FEATURESET = "show_featureset"
 SHOW_DHCP = "show_config_dhcp"
+SHOW_RUN_INTERFACES = "show_run_interfaces"
 
 CHANGE_ROUTER_NAME = "change_router_name"
 

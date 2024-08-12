@@ -25,6 +25,7 @@ parsing_function_mapping = {
     "show_memory_statistics": ("iosxe", "parse_show_memory_statistics", "python"),
     "show_run_ip_route": ("iosxe", "parse_show_run_ip_route", "str"),
     "show_host_configuration": ("iosxe", "parse_show_host_configuration", "str"),
+    "show_run_interfaces": ("iosxe", "parse_show_run_interfaces", "str"),
     # Add more mappings as needed
 }
 

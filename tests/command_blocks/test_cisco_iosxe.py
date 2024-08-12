@@ -33,6 +33,7 @@ async def test_show_ver():
                 "show_flash_statistics",
                 "show_featureset",
                 ("show_cellular", [0, 0]),
+                "show_run_interfaces",
             ],
             use_cache=True,
         )

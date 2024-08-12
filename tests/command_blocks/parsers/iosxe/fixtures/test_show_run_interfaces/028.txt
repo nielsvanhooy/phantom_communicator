@@ -1,0 +1,13 @@
+!
+interface Vlan10
+ description ### DATA ###
+ ip address 10.53.173.137 255.255.255.248 secondary
+ ip address 10.0.145.254 255.255.255.0
+ ip access-group 171 in
+ ip access-group 171 out
+ ip helper-address 10.101.65.76
+ ip helper-address 10.101.4.10
+ no ip proxy-arp
+ ip route-cache same-interface
+ service-policy input Coloring-traffic1
+!

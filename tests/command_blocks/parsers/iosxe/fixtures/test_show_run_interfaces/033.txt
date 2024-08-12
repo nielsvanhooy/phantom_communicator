@@ -1,0 +1,40 @@
+!
+interface Vlan10
+ ip address 1.1.1.1 255.255.255.0
+ standby 1 ip 1.1.1.2
+ standby 1 priority 90
+ standby 1 ip 11.11.11.11 secondary
+ standby 1 ip 111.111.111.111 secondary
+ standby 1 timers msec 150 160
+ standby 1 name vpnout
+ standby 1 authentication md5 key-string 7 070C285F4D06
+ standby 2 authentication md5 key-string 7 070C285F4D06
+ standby 2 ip 2.2.2.2
+ standby 2 preempt
+ standby 2 timers msec 150 msec 160
+ standby 2 priority 200
+ standby 20 ipv4 20.20.20.20
+ standby 20 priority 100
+ standby 20 ipv4 22.22.22.22 secondary
+ standby 20 ipv4 222.222.222.222 secondary
+ standby 20 timers 150 160
+ standby 20 name vpnout
+ standby 20 authentication cisco
+!
+interface vlan88
+ ip address 88.88.88.88 255.255.255.0
+ vrrp 100 ip 1.1.1.2
+ vrrp 100 description hatseflats
+ vrrp 100 authentication md5 key-string 7 070C285F4D06
+ vrrp 100 priority 90
+ vrrp 100 timers advertise 50
+ vrrp 110 ip 2.2.2.2
+ vrrp 110 timers advertise msec 50
+ vrrp 110 authentication cisco
+ vrrp 110 timers learn
+ vrrp 110 priority 100
+ vrrp 120 ip 3.3.3.3
+ vrrp 120 timers learn
+ vrrp 120 priority 120
+ no vrrp 120 preempt
+!

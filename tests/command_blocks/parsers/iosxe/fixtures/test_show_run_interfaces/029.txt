@@ -1,0 +1,41 @@
+!
+interface GigabitEthernet0/0/5
+ description Cascade to DEVICE-Fa4 # Multi-VLAN #
+ no ip address
+ media-type auto-select
+ negotiation auto
+ service instance 1990 ethernet
+  encapsulation dot1q 1990
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 1990 split-horizon group 0
+ !
+ service instance 1991 ethernet
+  encapsulation dot1q 1991
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 1991 split-horizon group 0
+ !
+ service instance 1992 ethernet
+  encapsulation dot1q 1992
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 1992 split-horizon group 0
+ !
+ service instance 1994 ethernet
+  encapsulation dot1q 1994
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 1994 split-horizon group 0
+ !
+!
+interface GigabitEthernet0/0/6
+ description Connection to VPN
+ no ip address
+ load-interval 30
+ media-type rj45
+ speed 100
+ no negotiation auto
+ service instance trunk 1 ethernet
+  encapsulation dot1q 2,77,88,200,202-204,207,209,211,220,601,700,702-710,715,720-750,843,851-852,859
+  rewrite ingress tag pop 1 symmetric
+  l2protocol forward stp
+  bridge-domain from-encapsulation
+ !
+!

@@ -68,7 +68,8 @@ def show_run_ip_route(*args) -> Command:
 
 
 @command_or_parse(name=commands.SHOW_RUNNING_CONFIG, vendor=commands.CISCO, os="iosxe")
-def show_running_config(*args) -> Command:
+@command_or_parse(name=commands.SHOW_RUN_INTERFACES, vendor=commands.CISCO, os="iosxe")
+def show_run_interfaces(*args) -> Command:
     return Command("show running-config")
 
 

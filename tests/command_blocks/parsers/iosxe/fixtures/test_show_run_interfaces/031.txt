@@ -1,0 +1,66 @@
+
+!
+!
+interface Loopback0
+ ip address 10.126.67.25 255.255.255.255
+!
+interface GigabitEthernet0/0/0
+ description Connection toblabla #  #
+ ip address 10.121.67.157 255.255.255.252
+ media-type rj45
+ speed 100
+ no negotiation auto
+ service-policy output MVLAN
+!
+interface GigabitEthernet0/1/0
+ description Connection to Customer VOICE LAN
+ switchport access vlan 215
+ hold-queue 500 in
+ hold-queue 100 out
+!
+interface GigabitEthernet0/1/1
+ description Connection to Customer DATA LAN
+ switchport access vlan 115
+ hold-queue 500 in
+ hold-queue 100 out
+!
+interface GigabitEthernet0/1/2
+ shutdown
+!
+interface GigabitEthernet0/1/3
+ shutdown
+!
+interface ATM0/2/0
+ no ip address
+ shutdown
+ atm oversubscribe factor 2
+ no atm enable-ilmi-trap
+!
+interface Ethernet0/2/0
+ no ip address
+ shutdown
+ no negotiation auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan115
+ description VLAN for Customer DATA LAN
+ ip address 10.18.1.1 255.255.255.0
+ no ip proxy-arp
+ ip access-group 160 in
+ ip route-cache same-interface
+ ntp disable
+ service-policy input Coloring_realtime
+!
+interface Vlan215
+ description VLAN for Customer VOICE LAN
+ ip address 10.18.2.1 255.255.255.0
+ ip helper-address 10.15.1.11
+ no ip proxy-arp
+ ip access-group 160 in
+ ip route-cache same-interface
+ ntp disable
+ service-policy input Coloring_realtime
+!

@@ -1,0 +1,62 @@
+interface ATM0/3/0.32 point-to-point
+ pvc 2/32
+   ubr 1024 48
+   service-policy out policy-cbwfq
+   encapsulation aal5mux ppp dialer
+   dialer pool-member 1
+   no shutdown
+!
+interface Dialer0
+ mtu 1500
+ ip unnumbered Loopback0
+ no ip proxy-arp
+ encapsulation ppp
+ dialer pool 1
+ no cdp enable
+ ppp chap hostname hostname
+ ppp chap password 0 password
+ ppp pap refuse
+ no shutdown
+!
+interface Dialer1
+ mtu 1500
+ ip unnumbered Loopback1
+ no ip proxy-arp
+ encapsulation ppp
+ dialer pool 2
+ no cdp enable
+ ppp chap hostname hostname
+ ppp chap password 7 08345F4B1B48
+ ppp pap refuse
+ no shutdown
+!
+interface Ethernet0/3/0.3
+ description Connection to TEST
+ encapsulation dot1Q 3
+ pppoe enable group global
+ pppoe-client dial-pool-number 1
+ pppoe-client ppp-max-payload 1500
+!
+interface GigabitEthernet0/0/1.954
+ description Vlan for Customer
+ encapsulation dot1Q 954
+ ip vrf forwarding cisco
+ ip address 172.18.132.252 255.255.255.0
+ ip helper-address 158.67.245.51
+ ip helper-address 158.67.245.53
+ no ip proxy-arp
+ ip access-group 160 in
+ ntp disable
+ no cdp enable
+!
+interface Cellular0/2/0
+ description Wireless Access to TEST
+ ip address negotiated
+ load-interval 30
+ dialer in-band
+ dialer idle-timeout 0
+ dialer watch-group 1
+ dialer-group 1
+ service-policy output policy-cbwfq
+ no shutdown
+!
