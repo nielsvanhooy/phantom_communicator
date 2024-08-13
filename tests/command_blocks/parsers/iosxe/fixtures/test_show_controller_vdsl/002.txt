@@ -1,0 +1,43 @@
+Controller VDSL 0 is DOWN
+
+Daemon Status:		 Establishing Link
+
+			XTU-R (DS)		XTU-C (US)
+Chip Vendor ID:		'BDCM'			 '    '
+Chip Vendor Specific:   0x0000			 0x0000
+Chip Vendor Country:    0xB500			 0x0000
+Modem Vendor ID:	'CSCO'			 '    '
+Modem Vendor Specific:  0x4602			 0x0000
+Modem Vendor Country:   0xB500			 0x0000
+Serial Number Near:    FCZ2219E0RQ C897VA-K 15.8(3)M9
+Serial Number Far:
+Modem Version Near:    15.8(3)M9
+Modem Version Far:
+
+Modem Status:		 Idle
+
+DSL Config Mode:	 AUTO
+Trained Mode:
+TC Mode:		 UNKNOWN
+Selftest Result:	 0x00
+DELT configuration:	 disabled
+DELT state:		 not running
+
+Full inits:		0
+Failed full inits:	0
+Short inits:		0
+Failed short inits:	0
+
+Firmware	Source		File Name
+--------	------		----------
+VDSL		embedded   	VDSL_LINUX_DEV_01212008
+
+Modem FW  Version:	4.14L.04A
+Modem PHY Version:	A2pv6C039t.d24o_rc1
+Trellis:		 OFF			  OFF
+SRA: 			 disabled		 disabled
+ SRA count: 		 0			 0
+Bit swap: 		 enabled		 enabled
+
+Training Log :	Stopped
+Training Log Filename :	flash:vdsllog.bin

@@ -1,5 +1,5 @@
 import re
-from typing import Any, List
+from typing import Any
 
 from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.decorators import command_or_parse
@@ -995,7 +995,7 @@ def parse_show_run_interfaces(command_results) -> list[Any]:
         if m:
             group = m.groupdict()
             input_policy = group["input_policy"]
-            intf_dict.update({"input_policy": group["input_policy"]})
+            intf_dict.update({"input_policy": input_policy})
             continue
 
         # service-policy output AutoQos-4.0-Output-Policy
@@ -1003,7 +1003,7 @@ def parse_show_run_interfaces(command_results) -> list[Any]:
         if m:
             group = m.groupdict()
             output_policy = group["output_policy"]
-            intf_dict.update({"output_policy": group["output_policy"]})
+            intf_dict.update({"output_policy": output_policy})
 
         # switchport port-security mac-address sticky 1020.4bb1.6f2f
         m = p61.match(line)
@@ -1640,7 +1640,7 @@ def parse_show_run_interfaces(command_results) -> list[Any]:
             #  rewrite ingress tag pop 1 symmetric
             #  bridge-domain 11 split-horizon group 0
             # !
-            regex = f"(service instance|service instance trunk)\s{service_instance}\sethernet(?P<service_instance_config>[\s\S]*?(?=\n.*?\!))"
+            regex = f"(service instance|service instance trunk)\s{service_instance}\sethernet(?P<service_instance_config>[\s\S]*?(?=\n.*?\!))"  # noqa W605
             p_service_instance_config = re.compile(regex)
             service_instance_config = p_service_instance_config.findall(data)
             for line in service_instance_config[0][1].splitlines():
