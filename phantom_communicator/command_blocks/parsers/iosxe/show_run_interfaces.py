@@ -1,12 +1,12 @@
 import re
-from typing import Any
+from typing import Any, List
 
 from phantom_communicator.command_blocks import constants as commands
 from phantom_communicator.command_blocks.decorators import command_or_parse
 
 
 @command_or_parse(name=commands.SHOW_RUN_INTERFACES, vendor=commands.CISCO, os="iosxe", type="parse_command")
-def parse_show_run_interfaces(command_results) -> dict[str, Any]:
+def parse_show_run_interfaces(command_results) -> list[Any]:
     data = command_results.result
 
     # Init vars
@@ -504,6 +504,7 @@ def parse_show_run_interfaces(command_results) -> dict[str, Any]:
         if m:
             interface = m.groupdict()["interface"]
             intf_dict = config_dict.setdefault("interfaces", {}).setdefault(interface, {})
+            intf_dict["interface"] = interface
             continue
 
         try:
@@ -1684,4 +1685,13 @@ def parse_show_run_interfaces(command_results) -> dict[str, Any]:
     except NameError:
         pass
 
-    return config_dict
+    all_values = get_interface_information(config_dict)
+
+    return all_values
+
+
+def get_interface_information(d):
+    interface_data = []
+    for key, values in d["interfaces"].items():
+        interface_data.append(values)
+    return interface_data

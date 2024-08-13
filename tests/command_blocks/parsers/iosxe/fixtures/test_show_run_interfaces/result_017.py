@@ -1,1 +1,1 @@
-expected_results = {"interfaces": {"HundredGigE1/0/2": {"dual_active_detection": True}}}
+expected_results = [{"dual_active_detection": True, "interface": "HundredGigE1/0/2"}]

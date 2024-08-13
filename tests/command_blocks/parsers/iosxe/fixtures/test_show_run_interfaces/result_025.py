@@ -1,1 +1,1 @@
-expected_results = {"interfaces": {"GigabitEthernet1/0/9": {"pim_mode": "sparse-dense-mode"}}}
+expected_results = [{"interface": "GigabitEthernet1/0/9", "pim_mode": "sparse-dense-mode"}]

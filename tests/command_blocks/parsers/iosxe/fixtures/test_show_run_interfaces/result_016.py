@@ -1,22 +1,21 @@
-expected_results = {
-    "interfaces": {
-        "TenGigabitEthernet1/0/13": {
-            "description": "EEDGE-MD",
-            "switchport_access_vlan": "881",
-            "switchport_mode": "access",
-            "authentication_periodic": True,
-            "mab": True,
-            "trust_device": "cisco-phone",
-            "dot1x_pae_authenticator": True,
-            "ipv6_destination_guard_attach_policy": "Univ-v6-IPDG-Policy1",
-            "ipv6_source_guard_attach_policy": "Univ-v6-IPSG-Policy2",
-            "keepalive": False,
-            "spanning_tree_portfast": True,
-            "input_policy": "AutoQos-4.0-CiscoPhone-Input-Policy",
-            "output_policy": "AutoQos-4.0-Output-Policy",
-            "access_session": "closed",
-            "access_session_host_mode": "multi-domain",
-            "access_session_port_control": "auto",
-        }
+expected_results = [
+    {
+        "access_session": "closed",
+        "access_session_host_mode": "multi-domain",
+        "access_session_port_control": "auto",
+        "authentication_periodic": True,
+        "description": "EEDGE-MD",
+        "dot1x_pae_authenticator": True,
+        "input_policy": "AutoQos-4.0-CiscoPhone-Input-Policy",
+        "interface": "TenGigabitEthernet1/0/13",
+        "ipv6_destination_guard_attach_policy": "Univ-v6-IPDG-Policy1",
+        "ipv6_source_guard_attach_policy": "Univ-v6-IPSG-Policy2",
+        "keepalive": False,
+        "mab": True,
+        "output_policy": "AutoQos-4.0-Output-Policy",
+        "spanning_tree_portfast": True,
+        "switchport_access_vlan": "881",
+        "switchport_mode": "access",
+        "trust_device": "cisco-phone",
     }
-}
+]
