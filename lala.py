@@ -7,7 +7,7 @@
 # import asyncio
 #
 # # async def readout():
-# #     communicator = Communicator.factory(host="10.1.1.152", username="lagen008", password="lagen008", os="iosxe")
+# #     communicator = Communicator.factory(host="10.1.1.152", username="test008", password="test008", os="iosxe")
 # #     async with communicator as conn:
 # #         await conn.send_commands(
 # #             [
@@ -26,8 +26,8 @@
 #
 # # device = {
 # #    "host": "10.1.1.152",
-# #    "auth_username": "lagen008",
-# #    "auth_password": "lagen008",
+# #    "auth_username": "test008",
+# #    "auth_password": "test008",
 # #    "auth_strict_key": False,
 # #    "platform": "cisco_iosxe",
 # #    "ssh_config_file": "tests/config"
@@ -51,8 +51,8 @@
 # def test_sync():
 #     device = {
 #         "host": "10.1.1.156",
-#         "auth_username": "lagen008",
-#         "auth_password": "lagen008",
+#         "auth_username": "test008",
+#         "auth_password": "test008",
 #         "auth_strict_key": False,
 #         "ssh_config_file": "/Users/nielsvanhooij/git/new_bifrost_repos/phantom_communicator/phantom_communicator/config",
 #     }
@@ -70,8 +70,8 @@
 # async def test():
 #     device = {
 #         "host": "10.1.1.156",
-#         "auth_username": "lagen008",
-#         "auth_password": "lagen008",
+#         "auth_username": "test008",
+#         "auth_password": "test008",
 #         "auth_strict_key": False,
 #         "transport": "asyncssh",
 #         "ssh_config_file": "/Users/nielsvanhooij/git/new_bifrost_repos/phantom_communicator/phantom_communicator/config",
