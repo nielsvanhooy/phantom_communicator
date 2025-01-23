@@ -21,19 +21,28 @@
         z and quit to logout.                           *\n*                     \
         \                                       *\n*                             \
         \                               *\n**************************************************************\n\
-        \n<one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary,
-      expected_channel_input_redacted: false}
+        \n  -----------------------------------------------------------------------------\
+        \     \n  User last login information:     \n  -----------------------------------------------------------------------------\n\
+        \  Access Type: SSH      \n  IP-Address : 192.168.28.197     \n  Time    \
+        \   : 2025-01-23 09:33:35+01:00     \n  -----------------------------------------------------------------------------\n\
+        <one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary, expected_channel_input_redacted: false}
     - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
       expected_channel_input_redacted: false}
     - {channel_output: "\nInfo: The configuration takes effect on the current user
-        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
-        interface brief, expected_channel_input_redacted: false}
-    - {channel_output: display interface brief, expected_channel_input: "\n", expected_channel_input_redacted: false}
+        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: "screen-width
+        256\ny\n\n", expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "screen-width 256\nWarning: This command will change the default
+        screen width. Continue? [Y/N]:y\nInfo: Succeeded in setting the screen width
+        to 256.\n<one-gv-2595bk-03>", expected_channel_input: display interface brief,
+      expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>\n<one-gv-2595bk-03>display interface
+        brief", expected_channel_input: "\n", expected_channel_input_redacted: false}
     - {channel_output: "\nPHY: Physical\n*down: administratively down\n(l): loopback\n
         (s): spoofing\n(b): BFD down\n^down: standby\n(e): ETHOAM down\n(v): VirtualPort\n
         InUti/OutUti: input utility/output utility\nInterface                   PHY\
         \   Protocol  InUti OutUti   inErrors  outErrors\nCellular0/0/0          \
-        \     up    up        0.01%  0.01%          0          0\nGigabitEthernet0/0/0\
+        \     *down down         0%     0%          0          0\nGigabitEthernet0/0/0\
         \        *down down         0%     0%          0          0\nGigabitEthernet0/0/1\
         \        *down down         0%     0%          0          0\nGigabitEthernet0/0/2\
         \        *down down         0%     0%          0          0\nGigabitEthernet0/0/3\
@@ -47,8 +56,7 @@
         \    up    down         0%     0%          0          0\nLoopBack0       \
         \            up    up(s)        --     --          0          0\nNULL0   \
         \                    up    up(s)        --     --          0          0\n\
-        Tunnel0/0/10                up    up           --     --          0      \
-        \    0\nVlanif1                     *down down         --     --         \
-        \ 0          0\n<one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
+        Vlanif1                     *down down         --     --          0      \
+        \    0\n<one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
     - {channel_output: "\n<one-gv-2595bk-03>", expected_channel_input: exit, expected_channel_input_redacted: false}
     - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}

@@ -24,15 +24,21 @@
         \n  -----------------------------------------------------------------------------\
         \     \n  User last login information:     \n  -----------------------------------------------------------------------------\n\
         \  Access Type: SSH      \n  IP-Address : 192.168.28.197     \n  Time    \
-        \   : 2024-07-19 15:14:45+02:00 DST     \n  -----------------------------------------------------------------------------\n\
-        <one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: screen-length
-        0 temporary, expected_channel_input_redacted: false}
-    - {channel_output: screen-length 0 temporary, expected_channel_input: "\n", expected_channel_input_redacted: false}
+        \   : 2025-01-23 09:34:18+01:00     \n  -----------------------------------------------------------------------------\n\
+        <one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary, expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
     - {channel_output: "\nInfo: The configuration takes effect on the current user
-        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: display
-        interface GigabitEthernet 0/0/0 | include Description, expected_channel_input_redacted: false}
-    - {channel_output: display interface GigabitEthernet 0/0/0 | include Description,
-      expected_channel_input: "\n", expected_channel_input_redacted: false}
+        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: "screen-width
+        256\ny\n\n", expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "screen-width 256\nWarning: This command will change the default
+        screen width. Continue? [Y/N]:y\nInfo: Succeeded in setting the screen width
+        to 256.\n<one-gv-2595bk-03>", expected_channel_input: display interface GigabitEthernet
+        0/0/0 | include Description, expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>\n<one-gv-2595bk-03>display interface
+        GigabitEthernet 0/0/0 | include Description", expected_channel_input: "\n",
+      expected_channel_input_redacted: false}
     - {channel_output: "\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface\n\
         <one-gv-2595bk-03>", expected_channel_input: display interface GigabitEthernet
         0/0/1 | include Description, expected_channel_input_redacted: false}

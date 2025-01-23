@@ -50,7 +50,7 @@ authors = ["niels van hooij <niels.vanhooij@kpn.com>"]
 description = ""
 name = "phantom-communicator"
 readme = "README.md"
-version = "0.4.1"
+version = "0.4.2"
 
 [tool.poetry.dependencies]
 asyncssh = "^2.14.2"
@@ -164,4 +164,4 @@ dependencies = [
 description = ""
 name = "phantom-communicator"
 readme = "README.md"
-version = "0.4.1"
+version = "0.4.2"

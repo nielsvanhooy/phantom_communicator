@@ -24,12 +24,17 @@
         \n  -----------------------------------------------------------------------------\
         \     \n  User last login information:     \n  -----------------------------------------------------------------------------\n\
         \  Access Type: SSH      \n  IP-Address : 192.168.28.197     \n  Time    \
-        \   : 2024-07-19 15:19:31+02:00 DST     \n  -----------------------------------------------------------------------------\n\
-        <one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: screen-length
-        0 temporary, expected_channel_input_redacted: false}
-    - {channel_output: screen-length 0 temporary, expected_channel_input: "\n", expected_channel_input_redacted: false}
-    - {channel_output: "\nInfo: The configuration takes effect on the current user
-        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: "\n",
+        \   : 2025-01-23 09:38:14+01:00     \n  -----------------------------------------------------------------------------\n\
+        <one-gv-2595bk-03>", expected_channel_input: screen-length 0 temporary, expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>screen-length 0 temporary", expected_channel_input: "\n",
       expected_channel_input_redacted: false}
-    - {channel_output: "\n<one-gv-2595bk-03>", expected_channel_input: exit, expected_channel_input_redacted: false}
+    - {channel_output: "\nInfo: The configuration takes effect on the current user
+        terminal interface only.\n<one-gv-2595bk-03>", expected_channel_input: "screen-width
+        256\ny\n\n", expected_channel_input_redacted: false}
+    - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "screen-width 256\nWarning: This command will change the default
+        screen width. Continue? [Y/N]:y\nInfo: Succeeded in setting the screen width
+        to 256.\n<one-gv-2595bk-03>", expected_channel_input: "\n", expected_channel_input_redacted: false}
+    - {channel_output: "\n<one-gv-2595bk-03>\n<one-gv-2595bk-03>", expected_channel_input: exit,
+      expected_channel_input_redacted: false}
     - {channel_output: '', expected_channel_input: "\n", expected_channel_input_redacted: false}
