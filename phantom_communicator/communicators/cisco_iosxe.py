@@ -20,7 +20,7 @@ class CiscoIosXeCommunicator(BaseCommunicator):
             auth_password=self.password,
             auth_strict_key=False,
             transport="asyncssh",
-            ssh_config_file="config",
+            # ssh_config_file="config",
         )
         self._cfg_conn = AsyncScrapliCfg(self._session, dedicated_connection=True)
         self.command_block = CommandParser.factory(vendor="cisco", os=self.os)
@@ -53,3 +53,12 @@ class CiscoIosXeCommunicator(BaseCommunicator):
             force_config=True,
             cleanup=False,
         )
+    
+    async def reload_device(self, wait_time: str) -> bool:
+        await self.send_commands(
+            [
+                f"reload in {wait_time}",
+                "exit",
+            ]
+        )
+        return True

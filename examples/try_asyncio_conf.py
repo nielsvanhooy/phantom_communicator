@@ -1,7 +1,7 @@
 import asyncio
 import timeit
 
-from phantom_communicator.communicators.communicator_asyncio import Communicator
+from phantom_communicator.communicators.base import Communicator
 
 
 async def get_data(ip):

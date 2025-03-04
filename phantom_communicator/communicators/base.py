@@ -150,7 +150,8 @@ class Communicator:  # pylint: disable=R0902
             try:
                 await self._session.open()
                 self.file_transfer_manager = FileTransferManager(self._session)
-                if self._cfg_conn:
+                # Only prepare cfg_conn if session is open and cfg_conn exists
+                if self._cfg_conn and self._session.isalive():
                     await self._cfg_conn.prepare()
                 connection = True
 

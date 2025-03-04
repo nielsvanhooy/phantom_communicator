@@ -25,7 +25,7 @@ class HuaweiVrpCommunicator(BaseCommunicator):
             auth_password=self.password,
             auth_strict_key=False,
             transport="asyncssh",
-            ssh_config_file="../config",
+            # ssh_config_file="config",
             privilege_levels=VRP_DEFAULT_PRIVILEGE_LEVELS,
             default_desired_privilege_level="privilege_exec",
             on_open=default_async_on_open,
@@ -101,3 +101,13 @@ class HuaweiVrpCommunicator(BaseCommunicator):
             force_config=True,
             cleanup=False,
         )
+    
+    async def reload_device(self, wait_time: str) -> bool:
+        await self.send_interactive_command(
+            [
+                ("save", "Y"),
+                (f"schedule reboot delay {wait_time}", "Y"),
+             ]
+        )
+        await self.send_command("quit")
+        return True

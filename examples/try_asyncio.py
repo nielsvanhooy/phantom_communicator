@@ -9,7 +9,7 @@ from phantom_communicator import logger
 
 
 async def get_data(ip):
-    communicator = Communicator.factory(host=ip, os="iosxe", username="test008", password="test008")
+    communicator = Communicator.factory(host=ip, os="vrp", username="lagen008", password="lagen008")
 
     async with communicator as conn:
         logger.warning(f"gathering info for {ip}")
@@ -38,7 +38,7 @@ async def communicate():
         # "10.17.28.193",
         # "10.1.1.155",
         # "10.17.28.194",
-        "10.1.1.156",
+        "10.1.1.131",
     ]
     task_list = [asyncio.create_task(get_data(cpe)) for cpe in cpes]
     await asyncio.gather(*task_list)
