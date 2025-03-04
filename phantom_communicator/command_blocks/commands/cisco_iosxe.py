@@ -59,7 +59,7 @@ def reboot(*args) -> list:
 @command_or_parse(name=commands.REBOOT_IN, vendor=commands.CISCO, os="iosxe")
 @return_config()
 def reboot_in(*args) -> list:
-    return ["reload in 1\n"]
+    return ["reload in 5\n"]
 
 
 @command_or_parse(name=commands.SHOW_RUN_IP_ROUTE, vendor=commands.CISCO, os="iosxe")
